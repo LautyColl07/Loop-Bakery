@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────
+   CSS Custom Properties — Loop Bakery Theme
+   ───────────────────────────────────────── */
+:root {
+  --color-primary:     #7B4B94;
+  --color-primary-light: #9B6BB0;
+  --color-lila:        #C8A2D8;
+  --color-lila-light:  #E8D4F1;
+  --color-cream:       #FFF8F3;
+  --color-cream-dark:  #F5EBE0;
+  --color-purple-deep: #2D1B2E;
+  --color-purple-dark: #3E214D;
+  --color-muted-fg:    #6B5A6E;
+}
+
+/* ─────────────────────────────────────────
+   Base / Reset
+   ───────────────────────────────────────── */
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
+  body {
+    font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+    background-color: #FFF8F3;
+    color: #2D1B2E;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    line-height: 1.3;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* ─────────────────────────────────────────
+   Component Utilities
+   ───────────────────────────────────────── */
+@layer components {
+  /* Botón primario */
+  .btn-primary {
+    @apply bg-primary-700 text-white px-6 py-3 rounded-2xl font-semibold
+           transition-all duration-300 hover:bg-primary-800 hover:shadow-glow-purple
+           hover:-translate-y-0.5 active:translate-y-0 focus:outline-none
+           focus:ring-2 focus:ring-primary-400 focus:ring-offset-2;
+  }
+
+  /* Botón secundario */
+  .btn-secondary {
+    @apply border-2 border-primary-700 text-primary-700 px-6 py-3 rounded-2xl
+           font-semibold bg-transparent transition-all duration-300
+           hover:bg-primary-50 hover:shadow-glow-lila
+           hover:-translate-y-0.5 active:translate-y-0 focus:outline-none
+           focus:ring-2 focus:ring-primary-400 focus:ring-offset-2;
+  }
+
+  /* Card base */
+  .card {
+    @apply bg-white rounded-3xl shadow-card border border-primary-100
+           transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1;
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  /* Separador decorativo */
+  .divider-lila {
+    @apply w-16 h-1 rounded-full mx-auto;
+    background: linear-gradient(to right, #7B4B94, #C8A2D8);
+  }
+
+  /* Gradiente de texto */
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(to right, #7B4B94, #9B6BB0);
+  }
+
+  /* Nav tab activo */
+  .nav-tab {
+    @apply flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm
+           whitespace-nowrap transition-all duration-300 cursor-pointer
+           focus:outline-none focus:ring-2 focus:ring-primary-300;
+  }
+
+  .nav-tab-active {
+    @apply bg-white text-primary-700 shadow-md;
+  }
+
+  .nav-tab-inactive {
+    @apply text-white/80 hover:text-white hover:bg-white/20;
+  }
+}
+
+/* ─────────────────────────────────────────
+   Scrollbar Custom (Webkit)
+   ───────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #F5EBE0;
+}
+::-webkit-scrollbar-thumb {
+  background: #C8A2D8;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #7B4B94;
+}
+
+/* ─────────────────────────────────────────
+   Utility helpers
+   ───────────────────────────────────────── */
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+  }
+
+  .glass-dark {
+    background: rgba(45, 27, 46, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(200, 162, 216, 0.2);
+  }
+
+  .pattern-dots {
+    background-image: radial-gradient(circle, rgba(123,75,148,0.12) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}

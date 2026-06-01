@@ -1,0 +1,5 @@
+// Placeholder para assets de Loop Bakery
+// Las imágenes y SVGs se almacenan en esta carpeta
+// Ejemplo: import logo from '../assets/logo.svg'
+
+export {};
