@@ -15,7 +15,7 @@ const SOCIAL_LINKS = [
     id: 'instagram',
     label: 'Instagram',
     sublabel: '@loopbakery',
-    href: 'https://instagram.com/loopbakery',
+    href: 'https://www.instagram.com/loop.bakery_?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==',
     icon: Instagram,
     color: '#E4405F',
     bgClass: 'hover:bg-pink-500/10',
