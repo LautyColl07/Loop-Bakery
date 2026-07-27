@@ -11,11 +11,11 @@ import { Box, ShoppingBag, Cake, Users, Sparkles, MessageCircle } from 'lucide-r
 
 export function HomePage() {
   const { activeTab, setActiveTab } = useApp();
-  const { setIsCartOpen } = useCart();
+
 
   return (
     <>
-      <Navbar onAdminClick={() => console.log('Admin')} />
+      <Navbar />
       <CartDrawer />
       <CheckoutModal />
 

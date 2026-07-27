@@ -1,17 +1,14 @@
 import { useState, useMemo } from 'react';
 import {
   Package, ChevronRight, ChevronLeft, Plus, Minus, Check,
-  ShoppingCart, Info, Box, Trash2,
+  ShoppingCart, Info, Box,
 } from 'lucide-react';
-import { INDIVIDUAL_PRODUCTS, PREBUILT_BOXES } from '../../data/mockData';
+import { INDIVIDUAL_PRODUCTS } from '../../data/mockData';
 import type { BoxSize, CustomBoxItem } from '../../types';
 import { BOX_SIZES, getFinalPrice, formatPrice, generateId } from '../../types';
 import { useCart } from '../../context/CartContext';
 
-// Todos los productos seleccionables para la caja
-const FILLABLE_PRODUCTS = [...INDIVIDUAL_PRODUCTS, ...PREBUILT_BOXES.slice(0, 3)].filter(
-  (p) => p.category === 'otros'
-).concat(INDIVIDUAL_PRODUCTS);
+
 
 // Usamos sólo los "otros" para llenar cajas (sin duplicar)
 const BOX_FILLABLE = [...new Map(

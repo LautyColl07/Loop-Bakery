@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Box, ShoppingBag, Cake, Users, Menu, X, ShoppingCart, LogIn } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { useCart } from '../../context/CartContext';
@@ -31,18 +32,14 @@ const NAV_ITEMS: NavItem[] = [
   },
 ];
 
-const IconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+const IconMap: Record<string, React.ElementType> = {
   Box,
   ShoppingBag,
   Cake,
   Users,
 };
 
-interface NavbarProps {
-  onAdminClick?: () => void;
-}
-
-export function Navbar({ onAdminClick }: NavbarProps) {
+export function Navbar() {
   const { activeTab, setActiveTab, isMenuOpen, setIsMenuOpen } = useApp();
   const { cartCount, setIsCartOpen } = useCart();
   const [scrolled, setScrolled] = useState(false);
@@ -120,14 +117,14 @@ export function Navbar({ onAdminClick }: NavbarProps) {
               </button>
 
               {/* Admin login */}
-              <button
+              <Link
                 id="navbar-admin-btn"
-                onClick={onAdminClick}
+                to="/admin/login"
                 className="flex items-center gap-2 px-4 py-2 rounded-xl text-white/80 hover:text-white hover:bg-white/15 text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-lila-DEFAULT"
               >
                 <LogIn className="w-4 h-4" strokeWidth={1.8} />
                 <span>Acceso admin</span>
-              </button>
+              </Link>
             </div>
 
             {/* Hamburguesa mobile */}
@@ -243,14 +240,15 @@ export function Navbar({ onAdminClick }: NavbarProps) {
 
           {/* Admin link mobile */}
           <div className="pt-2 mt-2 border-t border-white/10">
-            <button
+            <Link
               id="navbar-admin-btn-mobile"
-              onClick={onAdminClick}
+              to="/admin/login"
+              onClick={() => setIsMenuOpen(false)}
               className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-white/60 hover:text-white hover:bg-white/15 transition-all duration-200"
             >
               <LogIn className="w-5 h-5 flex-shrink-0" strokeWidth={1.8} />
               <span className="text-sm font-medium">Acceso administrador</span>
-            </button>
+            </Link>
           </div>
         </div>
       </div>
