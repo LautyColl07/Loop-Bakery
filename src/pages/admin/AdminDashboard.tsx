@@ -1,18 +1,24 @@
 import { useState } from 'react';
 import {
   Cake, LogOut, LayoutDashboard, Package, Menu, X,
-  ShoppingBag, TrendingUp, AlertTriangle,
+  ShoppingBag, TrendingUp, AlertTriangle, Warehouse,
+  BarChart3, ClipboardList,
 } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { useCatalog } from '../../context/CatalogContext';
+import { useOrders } from '../../context/OrdersContext';
 import { CatalogManager } from '../../components/admin/CatalogManager';
+import { StockManager } from '../../components/admin/StockManager';
+import { SalesCharts } from '../../components/admin/SalesCharts';
+import { PendingOrders } from '../../components/admin/PendingOrders';
 import { formatPrice } from '../../types';
 
-type AdminSection = 'overview' | 'catalog';
+type AdminSection = 'overview' | 'catalog' | 'stock' | 'stats' | 'orders';
 
 export function AdminDashboard() {
   const { user, signOut } = useAuth();
   const { products } = useCatalog();
+  const { pendingOrders, completedOrders } = useOrders();
   const [activeSection, setActiveSection] = useState<AdminSection>('overview');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -25,13 +31,26 @@ export function AdminDashboard() {
   const totalProducts = products.length;
   const outOfStock = products.filter(p => p.stock === 0).length;
   const lowStock = products.filter(p => p.stock > 0 && p.stock <= 3).length;
-  const avgPrice = products.length > 0
-    ? Math.round(products.reduce((s, p) => s + p.price, 0) / products.length)
-    : 0;
 
-  const NAV_ITEMS: { id: AdminSection; label: string; icon: typeof Package }[] = [
+  // Ingresos esta semana
+  const now = new Date();
+  const weekStart = new Date(now);
+  const day = weekStart.getDay();
+  weekStart.setDate(weekStart.getDate() - day + (day === 0 ? -6 : 1));
+  weekStart.setHours(0, 0, 0, 0);
+
+  const weekOrders = completedOrders.filter(o => {
+    const d = new Date(o.completedAt || o.createdAt);
+    return d >= weekStart;
+  });
+  const weekRevenue = weekOrders.reduce((s, o) => s + o.total, 0);
+
+  const NAV_ITEMS: { id: AdminSection; label: string; icon: React.ElementType; badge?: number }[] = [
     { id: 'overview', label: 'Resumen', icon: LayoutDashboard },
+    { id: 'orders', label: 'Pedidos', icon: ClipboardList, badge: pendingOrders.length },
     { id: 'catalog', label: 'Catálogo', icon: Package },
+    { id: 'stock', label: 'Stock', icon: Warehouse },
+    { id: 'stats', label: 'Estadísticas', icon: BarChart3 },
   ];
 
   return (
@@ -53,13 +72,13 @@ export function AdminDashboard() {
           </div>
 
           {/* Nav desktop */}
-          <nav className="hidden md:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-1">
             {NAV_ITEMS.map(item => (
               <button
                 key={item.id}
                 id={`admin-nav-${item.id}`}
                 onClick={() => setActiveSection(item.id)}
-                className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                className={`relative flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
                   activeSection === item.id
                     ? 'bg-white text-primary-700'
                     : 'text-white/70 hover:text-white hover:bg-white/15'
@@ -67,13 +86,18 @@ export function AdminDashboard() {
               >
                 <item.icon className="w-4 h-4" strokeWidth={1.8} />
                 {item.label}
+                {/* Badge de pendientes */}
+                {item.badge && item.badge > 0 ? (
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-amber-400 text-purple-deep text-[10px] font-bold rounded-full flex items-center justify-center">
+                    {item.badge > 9 ? '9+' : item.badge}
+                  </span>
+                ) : null}
               </button>
             ))}
           </nav>
 
           {/* User + logout */}
           <div className="flex items-center gap-3">
-            {/* Avatar */}
             {user?.photoURL ? (
               <img
                 src={user.photoURL}
@@ -89,7 +113,7 @@ export function AdminDashboard() {
             <button
               id="admin-mobile-menu"
               onClick={() => setMobileMenuOpen(v => !v)}
-              className="md:hidden p-2 rounded-xl text-white/80 hover:text-white hover:bg-white/15 transition-all"
+              className="lg:hidden p-2 rounded-xl text-white/80 hover:text-white hover:bg-white/15 transition-all"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" strokeWidth={2} /> : <Menu className="w-5 h-5" strokeWidth={2} />}
             </button>
@@ -110,12 +134,12 @@ export function AdminDashboard() {
 
         {/* Mobile nav dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-white/15 px-4 py-3 flex gap-2">
+          <div className="lg:hidden border-t border-white/15 px-4 py-3 grid grid-cols-3 gap-2">
             {NAV_ITEMS.map(item => (
               <button
                 key={item.id}
                 onClick={() => { setActiveSection(item.id); setMobileMenuOpen(false); }}
-                className={`flex items-center gap-2 flex-1 justify-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                className={`relative flex flex-col items-center gap-1 px-2 py-2.5 rounded-xl text-xs font-medium transition-all ${
                   activeSection === item.id
                     ? 'bg-white text-primary-700'
                     : 'text-white/70 hover:text-white hover:bg-white/15'
@@ -123,6 +147,11 @@ export function AdminDashboard() {
               >
                 <item.icon className="w-4 h-4" strokeWidth={1.8} />
                 {item.label}
+                {item.badge && item.badge > 0 ? (
+                  <span className="absolute top-1 right-1 w-4 h-4 bg-amber-400 text-purple-deep text-[8px] font-bold rounded-full flex items-center justify-center">
+                    {item.badge}
+                  </span>
+                ) : null}
               </button>
             ))}
           </div>
@@ -145,7 +174,7 @@ export function AdminDashboard() {
             </div>
 
             {/* Métricas */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
               <MetricCard
                 icon={Package}
                 label="Total productos"
@@ -154,9 +183,22 @@ export function AdminDashboard() {
               />
               <MetricCard
                 icon={TrendingUp}
-                label="Precio promedio"
-                value={formatPrice(avgPrice)}
+                label="Ingresos semana"
+                value={formatPrice(weekRevenue)}
                 color="blue"
+              />
+              <MetricCard
+                icon={ClipboardList}
+                label="Pedidos pendientes"
+                value={String(pendingOrders.length)}
+                color="amber"
+                alert={pendingOrders.length > 0}
+              />
+              <MetricCard
+                icon={ShoppingBag}
+                label="Ventas semana"
+                value={String(weekOrders.length)}
+                color="purple"
               />
               <MetricCard
                 icon={AlertTriangle}
@@ -177,37 +219,42 @@ export function AdminDashboard() {
             {/* Acciones rápidas */}
             <div>
               <h2 className="font-display text-lg font-semibold text-purple-deep mb-4">Acciones rápidas</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <button
-                  id="overview-go-catalog"
-                  onClick={() => setActiveSection('catalog')}
-                  className="flex items-center gap-4 p-5 bg-white rounded-2xl border border-primary-100 shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 text-left"
-                >
-                  <div className="w-12 h-12 rounded-2xl bg-primary-100 flex items-center justify-center flex-shrink-0">
-                    <Package className="w-6 h-6 text-primary-700" strokeWidth={1.8} />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-purple-deep">Gestionar catálogo</p>
-                    <p className="text-muted-foreground text-sm">Ver, agregar y editar productos</p>
-                  </div>
-                </button>
-                <a
-                  id="overview-go-site"
-                  href="/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-5 bg-white rounded-2xl border border-primary-100 shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300"
-                >
-                  <div className="w-12 h-12 rounded-2xl bg-lila-light flex items-center justify-center flex-shrink-0">
-                    <ShoppingBag className="w-6 h-6 text-primary-700" strokeWidth={1.8} />
-                  </div>
-                  <div>
-                    <p className="font-semibold text-purple-deep">Ver sitio de clientes</p>
-                    <p className="text-muted-foreground text-sm">Abre la tienda en una nueva pestaña</p>
-                  </div>
-                </a>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {[
+                  { id: 'orders' as AdminSection, icon: ClipboardList, title: 'Ver pedidos', desc: 'Gestionar pedidos pendientes', bg: 'bg-amber-50', iconBg: 'bg-amber-100', iconColor: 'text-amber-600' },
+                  { id: 'catalog' as AdminSection, icon: Package, title: 'Gestionar catálogo', desc: 'Ver, agregar y editar', bg: 'bg-white', iconBg: 'bg-primary-100', iconColor: 'text-primary-700' },
+                  { id: 'stock' as AdminSection, icon: Warehouse, title: 'Control de stock', desc: 'Actualizar cantidades', bg: 'bg-white', iconBg: 'bg-emerald-100', iconColor: 'text-emerald-600' },
+                  { id: 'stats' as AdminSection, icon: BarChart3, title: 'Estadísticas', desc: 'Ver gráficos de ventas', bg: 'bg-white', iconBg: 'bg-blue-100', iconColor: 'text-blue-600' },
+                ].map(action => (
+                  <button
+                    key={action.id}
+                    id={`overview-go-${action.id}`}
+                    onClick={() => setActiveSection(action.id)}
+                    className={`flex items-center gap-4 p-5 ${action.bg} rounded-2xl border border-primary-100 shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 text-left`}
+                  >
+                    <div className={`w-12 h-12 rounded-2xl ${action.iconBg} flex items-center justify-center flex-shrink-0`}>
+                      <action.icon className={`w-6 h-6 ${action.iconColor}`} strokeWidth={1.8} />
+                    </div>
+                    <div>
+                      <p className="font-semibold text-purple-deep">{action.title}</p>
+                      <p className="text-muted-foreground text-sm">{action.desc}</p>
+                    </div>
+                  </button>
+                ))}
               </div>
             </div>
+
+            {/* Link al sitio */}
+            <a
+              id="overview-go-site"
+              href="/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-5 py-3 bg-white rounded-2xl border border-primary-100 shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 text-sm font-medium text-purple-deep"
+            >
+              <ShoppingBag className="w-5 h-5 text-primary-700" strokeWidth={1.8} />
+              Ver sitio de clientes ↗
+            </a>
 
             {/* Lista rápida de stock bajo */}
             {(lowStock > 0 || outOfStock > 0) && (
@@ -240,10 +287,31 @@ export function AdminDashboard() {
           </div>
         )}
 
+        {/* ── Pedidos ─────────────────────────────────── */}
+        {activeSection === 'orders' && (
+          <div className="animate-fade-in">
+            <PendingOrders />
+          </div>
+        )}
+
         {/* ── Catálogo ──────────────────────────────────── */}
         {activeSection === 'catalog' && (
           <div className="animate-fade-in">
             <CatalogManager />
+          </div>
+        )}
+
+        {/* ── Stock ─────────────────────────────────────── */}
+        {activeSection === 'stock' && (
+          <div className="animate-fade-in">
+            <StockManager />
+          </div>
+        )}
+
+        {/* ── Estadísticas ──────────────────────────────── */}
+        {activeSection === 'stats' && (
+          <div className="animate-fade-in">
+            <SalesCharts />
           </div>
         )}
       </main>
@@ -263,7 +331,7 @@ const COLOR_MAP = {
 function MetricCard({
   icon: Icon, label, value, color = 'purple', alert = false,
 }: {
-  icon: typeof Package;
+  icon: React.ElementType;
   label: string;
   value: string;
   color?: keyof typeof COLOR_MAP;

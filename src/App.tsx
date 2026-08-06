@@ -3,6 +3,7 @@ import { AppProvider } from './context/AppContext';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import { CatalogProvider } from './context/CatalogContext';
+import { OrdersProvider } from './context/OrdersContext';
 import { ProtectedRoute } from './components/auth/ProtectedRoute';
 import { HomePage } from './pages';
 import { AdminLoginPage } from './pages/admin/AdminLoginPage';
@@ -12,27 +13,29 @@ function App() {
   return (
     <AuthProvider>
       <CatalogProvider>
-        <AppProvider>
-          <CartProvider>
-            <BrowserRouter>
-              <Routes>
-                {/* ── Cliente ─────────────────────── */}
-                <Route path="/" element={<HomePage />} />
+        <OrdersProvider>
+          <AppProvider>
+            <CartProvider>
+              <BrowserRouter>
+                <Routes>
+                  {/* ── Cliente ─────────────────────── */}
+                  <Route path="/" element={<HomePage />} />
 
-                {/* ── Admin ───────────────────────── */}
-                <Route path="/admin/login" element={<AdminLoginPage />} />
-                <Route
-                  path="/admin/*"
-                  element={
-                    <ProtectedRoute>
-                      <AdminDashboard />
-                    </ProtectedRoute>
-                  }
-                />
-              </Routes>
-            </BrowserRouter>
-          </CartProvider>
-        </AppProvider>
+                  {/* ── Admin ───────────────────────── */}
+                  <Route path="/admin/login" element={<AdminLoginPage />} />
+                  <Route
+                    path="/admin/*"
+                    element={
+                      <ProtectedRoute>
+                        <AdminDashboard />
+                      </ProtectedRoute>
+                    }
+                  />
+                </Routes>
+              </BrowserRouter>
+            </CartProvider>
+          </AppProvider>
+        </OrdersProvider>
       </CatalogProvider>
     </AuthProvider>
   );
