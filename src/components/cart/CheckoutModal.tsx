@@ -185,7 +185,7 @@ export function CheckoutModal() {
       {/* Overlay */}
       <div
         onClick={() => setIsCheckoutOpen(false)}
-        className="fixed inset-0 bg-purple-deep/60 backdrop-blur-sm z-[60] animate-fade-in"
+        className="fixed inset-0 bg-bruma-brown/60 backdrop-blur-sm z-[60] animate-fade-in"
         aria-hidden="true"
       />
 
@@ -201,7 +201,7 @@ export function CheckoutModal() {
         <div className="w-full max-w-2xl max-h-[95vh] sm:max-h-[90vh] bg-white sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-slide-up">
 
           {/* ── Header ──────────────────────────── */}
-          <div className="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-purple-deep to-primary-700 flex-shrink-0">
+          <div className="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-bruma-brown to-bruma-blue flex-shrink-0">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center">
                 <ShoppingBag className="w-4 h-4 text-white" strokeWidth={1.8} />
@@ -210,7 +210,7 @@ export function CheckoutModal() {
                 <h2 className="font-display font-bold text-white text-base leading-none">
                   Confirmar pedido
                 </h2>
-                <p className="text-lila-light text-xs mt-0.5">{totalItems} ítem{totalItems !== 1 ? 's' : ''}</p>
+                <p className="text-bruma-cream text-xs mt-0.5">{totalItems} ítem{totalItems !== 1 ? 's' : ''}</p>
               </div>
             </div>
             <button
@@ -228,20 +228,20 @@ export function CheckoutModal() {
 
               {/* ── Resumen del pedido ───────────── */}
               <div>
-                <h3 className="font-display font-semibold text-purple-deep text-base mb-3 flex items-center gap-2">
-                  <ShoppingBag className="w-4 h-4 text-primary-700" strokeWidth={1.8} />
+                <h3 className="font-display font-semibold text-bruma-brown text-base mb-3 flex items-center gap-2">
+                  <ShoppingBag className="w-4 h-4 text-bruma-blue" strokeWidth={1.8} />
                   Tu pedido
                 </h3>
 
-                <div className="space-y-2 bg-cream-100 rounded-2xl p-4 border border-primary-100">
+                <div className="space-y-2 bg-bruma-cream rounded-2xl p-4 border border-bruma-cream-mid">
                   {/* Productos normales */}
                   {cart.map(item => (
                     <div key={item.product.id} className="flex justify-between items-center text-sm">
-                      <span className="text-purple-deep">
-                        <span className="font-semibold text-primary-700">{item.quantity}×</span>{' '}
+                      <span className="text-bruma-brown">
+                        <span className="font-semibold text-bruma-blue">{item.quantity}×</span>{' '}
                         {item.product.name}
                       </span>
-                      <span className="font-medium text-purple-deep">
+                      <span className="font-medium text-bruma-brown">
                         {formatPrice(getFinalPrice(item.product) * item.quantity)}
                       </span>
                     </div>
@@ -249,17 +249,17 @@ export function CheckoutModal() {
 
                   {/* Cajas personalizadas */}
                   {customBoxes.map(cb => (
-                    <div key={cb.box.id} className="border-t border-primary-100 pt-2 mt-2">
+                    <div key={cb.box.id} className="border-t border-bruma-cream-mid pt-2 mt-2">
                       <div className="flex justify-between items-center text-sm">
-                        <span className="text-purple-deep flex items-center gap-1.5">
-                          <Package className="w-3.5 h-3.5 text-primary-700" strokeWidth={1.8} />
+                        <span className="text-bruma-brown flex items-center gap-1.5">
+                          <Package className="w-3.5 h-3.5 text-bruma-blue" strokeWidth={1.8} />
                           <span className="font-semibold">{cb.box.size.label} personalizada</span>
                         </span>
-                        <span className="font-medium text-purple-deep">{formatPrice(cb.box.totalPrice)}</span>
+                        <span className="font-medium text-bruma-brown">{formatPrice(cb.box.totalPrice)}</span>
                       </div>
                       <div className="mt-1 pl-5 space-y-0.5">
                         {cb.box.items.map(item => (
-                          <p key={item.product.id} className="text-xs text-muted-foreground">
+                          <p key={item.product.id} className="text-xs text-bruma-brown-light">
                             └ {item.quantity}× {item.product.name}
                           </p>
                         ))}
@@ -268,9 +268,9 @@ export function CheckoutModal() {
                   ))}
 
                   {/* Total */}
-                  <div className="border-t border-primary-200 pt-3 mt-2 flex justify-between items-center">
-                    <span className="font-bold text-purple-deep text-sm">Total estimado</span>
-                    <span className="font-bold text-primary-700 text-xl">{formatPrice(cartTotal)}</span>
+                  <div className="border-t border-bruma-blue/20 pt-3 mt-2 flex justify-between items-center">
+                    <span className="font-bold text-bruma-brown text-sm">Total estimado</span>
+                    <span className="font-bold text-bruma-blue text-xl">{formatPrice(cartTotal)}</span>
                   </div>
                 </div>
               </div>
@@ -289,15 +289,15 @@ export function CheckoutModal() {
 
               {/* ── Formulario ───────────────────── */}
               <div>
-                <h3 className="font-display font-semibold text-purple-deep text-base mb-4 flex items-center gap-2">
-                  <User className="w-4 h-4 text-primary-700" strokeWidth={1.8} />
+                <h3 className="font-display font-semibold text-bruma-brown text-base mb-4 flex items-center gap-2">
+                  <User className="w-4 h-4 text-bruma-blue" strokeWidth={1.8} />
                   Tus datos
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Nombre */}
                   <div className="space-y-1.5">
-                    <label htmlFor="checkout-nombre" className="text-sm font-medium text-purple-deep">
+                    <label htmlFor="checkout-nombre" className="text-sm font-medium text-bruma-brown">
                       Nombre <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -306,8 +306,8 @@ export function CheckoutModal() {
                       value={form.nombre}
                       onChange={e => handleChange('nombre', e.target.value)}
                       placeholder="Ej: María"
-                      className={`w-full px-4 py-3 rounded-xl border-2 text-sm bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-primary-400 ${
-                        errors.nombre ? 'border-red-300 bg-red-50' : 'border-primary-100 hover:border-primary-300'
+                      className={`w-full px-4 py-3 rounded-xl border-2 text-sm bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-bruma-teal focus:border-bruma-teal ${
+                        errors.nombre ? 'border-red-300 bg-red-50' : 'border-bruma-cream-mid hover:border-bruma-teal'
                       }`}
                     />
                     {errors.nombre && (
@@ -320,7 +320,7 @@ export function CheckoutModal() {
 
                   {/* Apellido */}
                   <div className="space-y-1.5">
-                    <label htmlFor="checkout-apellido" className="text-sm font-medium text-purple-deep">
+                    <label htmlFor="checkout-apellido" className="text-sm font-medium text-bruma-brown">
                       Apellido <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -329,8 +329,8 @@ export function CheckoutModal() {
                       value={form.apellido}
                       onChange={e => handleChange('apellido', e.target.value)}
                       placeholder="Ej: García"
-                      className={`w-full px-4 py-3 rounded-xl border-2 text-sm bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-primary-400 ${
-                        errors.apellido ? 'border-red-300 bg-red-50' : 'border-primary-100 hover:border-primary-300'
+                      className={`w-full px-4 py-3 rounded-xl border-2 text-sm bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-bruma-teal focus:border-bruma-teal ${
+                        errors.apellido ? 'border-red-300 bg-red-50' : 'border-bruma-cream-mid hover:border-bruma-teal'
                       }`}
                     />
                     {errors.apellido && (
@@ -343,19 +343,19 @@ export function CheckoutModal() {
 
                   {/* Teléfono */}
                   <div className="space-y-1.5 sm:col-span-2">
-                    <label htmlFor="checkout-telefono" className="text-sm font-medium text-purple-deep">
+                    <label htmlFor="checkout-telefono" className="text-sm font-medium text-bruma-brown">
                       Número de teléfono <span className="text-red-500">*</span>
                     </label>
                     <div className="relative">
-                      <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" strokeWidth={1.8} />
+                      <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-bruma-brown-light" strokeWidth={1.8} />
                       <input
                         id="checkout-telefono"
                         type="tel"
                         value={form.telefono}
                         onChange={e => handleChange('telefono', e.target.value)}
                         placeholder="Ej: +54 11 1234-5678"
-                        className={`w-full pl-10 pr-4 py-3 rounded-xl border-2 text-sm bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-primary-400 ${
-                          errors.telefono ? 'border-red-300 bg-red-50' : 'border-primary-100 hover:border-primary-300'
+                        className={`w-full pl-10 pr-4 py-3 rounded-xl border-2 text-sm bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-bruma-teal focus:border-bruma-teal ${
+                          errors.telefono ? 'border-red-300 bg-red-50' : 'border-bruma-cream-mid hover:border-bruma-teal'
                         }`}
                       />
                     </div>
@@ -369,16 +369,16 @@ export function CheckoutModal() {
 
                   {/* Día de retiro */}
                   <div className="space-y-1.5 sm:col-span-2">
-                    <label htmlFor="checkout-dia" className="text-sm font-medium text-purple-deep flex items-center gap-1.5">
-                      <Calendar className="w-4 h-4 text-primary-700" strokeWidth={1.8} />
+                    <label htmlFor="checkout-dia" className="text-sm font-medium text-bruma-brown flex items-center gap-1.5">
+                      <Calendar className="w-4 h-4 text-bruma-blue" strokeWidth={1.8} />
                       Día de retiro <span className="text-red-500">*</span>
                     </label>
                     <select
                       id="checkout-dia"
                       value={form.diaRetiro}
                       onChange={e => handleChange('diaRetiro', e.target.value)}
-                      className={`w-full px-4 py-3 rounded-xl border-2 text-sm bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-primary-400 appearance-none cursor-pointer ${
-                        errors.diaRetiro ? 'border-red-300 bg-red-50' : 'border-primary-100 hover:border-primary-300'
+                      className={`w-full px-4 py-3 rounded-xl border-2 text-sm bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-bruma-teal focus:border-bruma-teal appearance-none cursor-pointer ${
+                        errors.diaRetiro ? 'border-red-300 bg-red-50' : 'border-bruma-cream-mid hover:border-bruma-teal'
                       }`}
                     >
                       <option value="">— Seleccioná un día —</option>
@@ -392,7 +392,7 @@ export function CheckoutModal() {
                         {errors.diaRetiro}
                       </p>
                     )}
-                    <p className="text-xs text-muted-foreground flex items-center gap-1.5">
+                    <p className="text-xs text-bruma-brown-light flex items-center gap-1.5">
                       <Clock className="w-3 h-3" strokeWidth={2} />
                       El horario exacto se coordina por WhatsApp al confirmar
                     </p>
@@ -400,8 +400,8 @@ export function CheckoutModal() {
 
                   {/* Notas opcionales */}
                   <div className="space-y-1.5 sm:col-span-2">
-                    <label htmlFor="checkout-notas" className="text-sm font-medium text-purple-deep">
-                      Notas adicionales <span className="text-muted-foreground font-normal">(opcional)</span>
+                    <label htmlFor="checkout-notas" className="text-sm font-medium text-bruma-brown">
+                      Notas adicionales <span className="text-bruma-brown-light font-normal">(opcional)</span>
                     </label>
                     <textarea
                       id="checkout-notas"
@@ -409,7 +409,7 @@ export function CheckoutModal() {
                       onChange={e => handleChange('notas', e.target.value)}
                       placeholder="Ej: Sin maní, para cumpleaños, dedicatoria especial..."
                       rows={3}
-                      className="w-full px-4 py-3 rounded-xl border-2 border-primary-100 hover:border-primary-300 text-sm bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-primary-400 resize-none"
+                      className="w-full px-4 py-3 rounded-xl border-2 border-bruma-cream-mid hover:border-bruma-teal text-sm bg-white transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-bruma-teal focus:border-bruma-teal resize-none"
                     />
                   </div>
                 </div>
@@ -419,7 +419,7 @@ export function CheckoutModal() {
           </div>
 
           {/* ── Footer — CTA ─────────────────────── */}
-          <div className="px-6 py-4 border-t border-primary-100 bg-cream-100 flex-shrink-0 space-y-3">
+          <div className="px-6 py-4 border-t border-bruma-cream-mid bg-bruma-cream flex-shrink-0 space-y-3">
             <button
               id="checkout-confirm-btn"
               onClick={handleSubmit}
@@ -443,7 +443,7 @@ export function CheckoutModal() {
                 </>
               )}
             </button>
-            <p className="text-center text-xs text-muted-foreground">
+            <p className="text-center text-xs text-bruma-brown-light">
               Al confirmar, se abrirá WhatsApp con el detalle de tu pedido. No se procesa ningún pago online.
             </p>
           </div>

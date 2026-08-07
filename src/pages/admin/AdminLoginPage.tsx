@@ -33,11 +33,11 @@ export function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-deep via-primary-800 to-primary-600 flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-bruma-brown via-bruma-blue-dark to-bruma-blue flex items-center justify-center p-4 relative overflow-hidden">
       {/* Fondo decorativo */}
       <div className="absolute inset-0 pattern-dots opacity-20 pointer-events-none" />
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-lila-DEFAULT/15 blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-primary-400/15 blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-bruma-teal/15 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-bruma-blue/15 blur-3xl pointer-events-none" />
 
       {/* Card central */}
       <div className="relative z-10 w-full max-w-md">
@@ -55,25 +55,25 @@ export function AdminLoginPage() {
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
 
           {/* Header de la card */}
-          <div className="bg-gradient-to-r from-purple-deep to-primary-700 px-8 py-8 text-center">
+          <div className="bg-gradient-to-r from-bruma-brown to-bruma-blue px-8 py-8 text-center">
             <div className="w-16 h-16 rounded-2xl bg-white/15 flex items-center justify-center mx-auto mb-4">
               <Cake className="w-8 h-8 text-white" strokeWidth={1.5} />
             </div>
             <h1 className="font-display text-2xl font-bold text-white mb-1">
-              Loop Bakery
+              Bruma Cafe
             </h1>
-            <p className="text-lila-light text-sm">Panel de Administración</p>
+            <p className="text-bruma-cream text-sm">Panel de Administración</p>
           </div>
 
           {/* Cuerpo */}
           <div className="px-8 py-8 space-y-6">
             {/* Info de acceso restringido */}
-            <div className="flex items-start gap-3 p-4 rounded-2xl bg-primary-50 border border-primary-100">
-              <ShieldCheck className="w-5 h-5 text-primary-700 flex-shrink-0 mt-0.5" strokeWidth={1.8} />
+            <div className="flex items-start gap-3 p-4 rounded-2xl bg-bruma-blue/5 border border-bruma-cream-mid">
+              <ShieldCheck className="w-5 h-5 text-bruma-blue flex-shrink-0 mt-0.5" strokeWidth={1.8} />
               <div>
-                <p className="font-semibold text-purple-deep text-sm">Acceso restringido</p>
-                <p className="text-muted-foreground text-xs mt-0.5 leading-relaxed">
-                  Solo el propietario de Loop Bakery puede ingresar. Cualquier otra cuenta de
+                <p className="font-semibold text-bruma-brown text-sm">Acceso restringido</p>
+                <p className="text-bruma-brown-light text-xs mt-0.5 leading-relaxed">
+                  Solo el propietario de Bruma Cafe puede ingresar. Cualquier otra cuenta de
                   Google será rechazada automáticamente.
                 </p>
               </div>
@@ -94,10 +94,10 @@ export function AdminLoginPage() {
               disabled={signingIn || loading}
               className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-white border-2 border-gray-200
                 rounded-2xl font-semibold text-gray-700 text-sm
-                hover:border-primary-300 hover:bg-primary-50 hover:text-primary-700
+                hover:border-bruma-teal hover:bg-bruma-blue/5 hover:text-bruma-blue
                 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card
                 disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0
-                focus:outline-none focus:ring-2 focus:ring-primary-400"
+                focus:outline-none focus:ring-2 focus:ring-bruma-teal"
             >
               {signingIn ? (
                 <Loader2 className="w-5 h-5 animate-spin" strokeWidth={2} />
@@ -114,7 +114,7 @@ export function AdminLoginPage() {
             </button>
 
             {/* Nota */}
-            <p className="text-center text-xs text-muted-foreground">
+            <p className="text-center text-xs text-bruma-brown-light">
               Solo la cuenta <strong>{OWNER_EMAIL}</strong> puede acceder.
             </p>
           </div>

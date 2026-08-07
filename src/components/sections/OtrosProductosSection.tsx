@@ -7,17 +7,17 @@ export function OtrosProductosSection() {
     <section id="section-otros" className="animate-fade-in">
       {/* ── Header ────────────────────────────────── */}
       <div className="text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100 text-primary-700 text-sm font-medium mb-4">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bruma-blue/10 text-bruma-blue text-sm font-medium mb-4">
           <Cake className="w-4 h-4" strokeWidth={1.8} />
-          Productos individuales
+          Delicias individuales
         </div>
 
-        <h2 className="font-display text-4xl sm:text-5xl font-bold text-purple-deep mb-3">
-          Otros productos
+        <h2 className="font-display text-4xl sm:text-5xl font-bold text-bruma-brown mb-3">
+          Cookies & Especialidades
         </h2>
         <div className="divider-lila mb-4" />
-        <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-          Alfajores, porciones de torta, cupcakes y más delicias para disfrutar en cualquier momento.
+        <p className="text-bruma-brown-light text-lg max-w-xl mx-auto">
+          Cookies de especialidad, brownies, budines y más delicias para disfrutar en cualquier momento.
         </p>
       </div>
 
@@ -30,7 +30,7 @@ export function OtrosProductosSection() {
 
       {/* ── CTA WhatsApp ──────────────────────────── */}
       <div className="mt-12 text-center">
-        <p className="text-muted-foreground mb-4">
+        <p className="text-bruma-brown-light mb-4">
           ¿Querés pedir en cantidad o consultar disponibilidad?
         </p>
         <a

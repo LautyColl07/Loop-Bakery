@@ -7,14 +7,14 @@ import { BarChart3, TrendingUp, Trophy } from 'lucide-react';
 import { useOrders } from '../../context/OrdersContext';
 import { formatPrice } from '../../types';
 
-// ── Paleta violeta ─────────────────────────────────────────
+// ── Paleta Bruma Cafe ──────────────────────────────────────
 const COLORS = {
-  primary: '#6d28d9',     // primary-700
-  primaryLight: '#a78bfa', // primary-400
-  accent: '#d8b4fe',       // lila
-  deep: '#2d1b2e',         // purple-deep
-  cream: '#faf5f0',        // cream-100
-  grid: '#e8ddd3',         // cream-300
+  primary: '#5B8296',      // Azul bruma
+  primaryLight: '#88C0C7', // Teal
+  accent: '#B5D9DE',       // Teal claro
+  deep: '#402E23',         // Marrón café
+  cream: '#FAF2E1',        // Crema
+  grid: '#E8D9C0',         // Cream-mid
 };
 
 // ── Helpers de fecha ───────────────────────────────────────
@@ -48,8 +48,8 @@ function CustomTooltip({ active, payload, label }: {
 }) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-white rounded-xl border border-primary-100 shadow-lg px-4 py-3 text-sm">
-      <p className="font-semibold text-purple-deep mb-1">{label}</p>
+    <div className="bg-white rounded-xl border border-bruma-cream-mid shadow-lg px-4 py-3 text-sm">
+      <p className="font-semibold text-bruma-brown mb-1">{label}</p>
       {payload.map((entry, i) => (
         <p key={i} className="text-xs" style={{ color: entry.color }}>
           {entry.name}: {entry.name.includes('Ingreso') ? formatPrice(entry.value) : entry.value}
@@ -151,43 +151,43 @@ export function SalesCharts() {
     <div className="space-y-8 animate-fade-in">
       {/* ── Header ──────────────────────────────── */}
       <div>
-        <h2 className="font-display text-2xl font-bold text-purple-deep flex items-center gap-2">
-          <BarChart3 className="w-6 h-6 text-primary-700" strokeWidth={1.8} />
+        <h2 className="font-display text-2xl font-bold text-bruma-brown flex items-center gap-2">
+          <BarChart3 className="w-6 h-6 text-bruma-blue" strokeWidth={1.8} />
           Estadísticas de Ventas
         </h2>
-        <p className="text-muted-foreground text-sm mt-1">
+        <p className="text-bruma-brown-light text-sm mt-1">
           Rendimiento semanal y mensual basado en pedidos completados
         </p>
       </div>
 
       {/* ── Métricas ─────────────────────────────── */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="bg-gradient-to-br from-primary-700 to-primary-600 rounded-2xl p-5 text-white shadow-card">
+        <div className="bg-gradient-to-br from-bruma-blue-dark to-bruma-blue rounded-2xl p-5 text-white shadow-card">
           <p className="text-white/70 text-xs font-medium mb-1">Ingresos esta semana</p>
           <p className="text-2xl font-bold">{formatPrice(weekTotal)}</p>
           <p className="text-white/60 text-xs mt-1">{weekOrders} pedidos</p>
         </div>
-        <div className="bg-gradient-to-br from-purple-deep to-primary-800 rounded-2xl p-5 text-white shadow-card">
+        <div className="bg-gradient-to-br from-bruma-brown to-bruma-blue-dark rounded-2xl p-5 text-white shadow-card">
           <p className="text-white/70 text-xs font-medium mb-1">Ingresos último mes</p>
           <p className="text-2xl font-bold">{formatPrice(monthTotal)}</p>
           <p className="text-white/60 text-xs mt-1">{completedOrders.length} pedidos totales</p>
         </div>
-        <div className="bg-white rounded-2xl p-5 border border-primary-100 shadow-card">
-          <p className="text-muted-foreground text-xs font-medium mb-1">Ticket promedio</p>
-          <p className="text-2xl font-bold text-primary-700">
+        <div className="bg-white rounded-2xl p-5 border border-bruma-cream-mid shadow-card">
+          <p className="text-bruma-brown-light text-xs font-medium mb-1">Ticket promedio</p>
+          <p className="text-2xl font-bold text-bruma-blue">
             {completedOrders.length > 0
               ? formatPrice(Math.round(monthTotal / completedOrders.length))
               : formatPrice(0)}
           </p>
-          <p className="text-muted-foreground text-xs mt-1">por pedido</p>
+          <p className="text-bruma-brown-light text-xs mt-1">por pedido</p>
         </div>
       </div>
 
       {/* ── Gráfico semanal ─────────────────────── */}
-      <div className="bg-white rounded-2xl border border-primary-100 shadow-card p-6">
+      <div className="bg-white rounded-2xl border border-bruma-cream-mid shadow-card p-6">
         <div className="flex items-center gap-2 mb-6">
-          <TrendingUp className="w-5 h-5 text-primary-700" strokeWidth={1.8} />
-          <h3 className="font-display text-lg font-semibold text-purple-deep">
+          <TrendingUp className="w-5 h-5 text-bruma-blue" strokeWidth={1.8} />
+          <h3 className="font-display text-lg font-semibold text-bruma-brown">
             Ventas de la semana
           </h3>
         </div>
@@ -241,10 +241,10 @@ export function SalesCharts() {
       </div>
 
       {/* ── Gráfico mensual ─────────────────────── */}
-      <div className="bg-white rounded-2xl border border-primary-100 shadow-card p-6">
+      <div className="bg-white rounded-2xl border border-bruma-cream-mid shadow-card p-6">
         <div className="flex items-center gap-2 mb-6">
-          <BarChart3 className="w-5 h-5 text-primary-700" strokeWidth={1.8} />
-          <h3 className="font-display text-lg font-semibold text-purple-deep">
+          <BarChart3 className="w-5 h-5 text-bruma-blue" strokeWidth={1.8} />
+          <h3 className="font-display text-lg font-semibold text-bruma-brown">
             Tendencia mensual
           </h3>
         </div>
@@ -300,16 +300,16 @@ export function SalesCharts() {
       </div>
 
       {/* ── Top productos ───────────────────────── */}
-      <div className="bg-white rounded-2xl border border-primary-100 shadow-card p-6">
+      <div className="bg-white rounded-2xl border border-bruma-cream-mid shadow-card p-6">
         <div className="flex items-center gap-2 mb-5">
           <Trophy className="w-5 h-5 text-amber-500" strokeWidth={1.8} />
-          <h3 className="font-display text-lg font-semibold text-purple-deep">
+          <h3 className="font-display text-lg font-semibold text-bruma-brown">
             Productos más vendidos
           </h3>
         </div>
 
         {topProducts.length === 0 ? (
-          <p className="text-sm text-muted-foreground text-center py-8">
+          <p className="text-sm text-bruma-brown-light text-center py-8">
             No hay datos aún. Marcá pedidos como completados para ver estadísticas.
           </p>
         ) : (
@@ -324,7 +324,7 @@ export function SalesCharts() {
                     i === 0 ? 'bg-amber-100 text-amber-700'
                       : i === 1 ? 'bg-gray-100 text-gray-600'
                       : i === 2 ? 'bg-orange-100 text-orange-600'
-                      : 'bg-cream-200 text-muted-foreground'
+                      : 'bg-bruma-cream-dark text-bruma-brown-light'
                   }`}>
                     {i + 1}
                   </span>
@@ -332,15 +332,15 @@ export function SalesCharts() {
                   {/* Barra + info */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-1">
-                      <p className="text-sm font-medium text-purple-deep truncate">{prod.name}</p>
+                      <p className="text-sm font-medium text-bruma-brown truncate">{prod.name}</p>
                       <div className="flex items-center gap-3 flex-shrink-0 ml-2">
-                        <span className="text-xs font-semibold text-primary-700">{prod.qty} un.</span>
-                        <span className="text-xs text-muted-foreground">{formatPrice(prod.revenue)}</span>
+                        <span className="text-xs font-semibold text-bruma-blue">{prod.qty} un.</span>
+                        <span className="text-xs text-bruma-brown-light">{formatPrice(prod.revenue)}</span>
                       </div>
                     </div>
-                    <div className="h-2 bg-cream-200 rounded-full overflow-hidden">
+                    <div className="h-2 bg-bruma-cream-dark rounded-full overflow-hidden">
                       <div
-                        className="h-full rounded-full bg-gradient-to-r from-primary-700 to-primary-500 transition-all duration-700"
+                        className="h-full rounded-full bg-gradient-to-r from-bruma-blue to-bruma-teal transition-all duration-700"
                         style={{ width: `${pct}%` }}
                       />
                     </div>

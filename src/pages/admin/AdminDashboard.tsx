@@ -54,10 +54,10 @@ export function AdminDashboard() {
   ];
 
   return (
-    <div className="min-h-screen bg-cream-100 flex flex-col">
+    <div className="min-h-screen bg-bruma-cream flex flex-col">
 
       {/* ── Top Bar ───────────────────────────────────────── */}
-      <header className="bg-gradient-to-r from-purple-deep to-primary-700 shadow-lg sticky top-0 z-30">
+      <header className="bg-gradient-to-r from-bruma-brown to-bruma-blue shadow-lg sticky top-0 z-30">
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
 
           {/* Logo */}
@@ -66,8 +66,8 @@ export function AdminDashboard() {
               <Cake className="w-4 h-4 text-white" strokeWidth={1.8} />
             </div>
             <div className="hidden sm:block">
-              <p className="font-display font-bold text-white text-sm leading-none">Loop Bakery</p>
-              <p className="text-lila-light text-[10px] tracking-wide">Panel Admin</p>
+              <p className="font-display font-bold text-white text-sm leading-none">Bruma Cafe</p>
+              <p className="text-bruma-cream text-[10px] tracking-wide">Panel Admin</p>
             </div>
           </div>
 
@@ -80,7 +80,7 @@ export function AdminDashboard() {
                 onClick={() => setActiveSection(item.id)}
                 className={`relative flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
                   activeSection === item.id
-                    ? 'bg-white text-primary-700'
+                    ? 'bg-white text-bruma-blue'
                     : 'text-white/70 hover:text-white hover:bg-white/15'
                 }`}
               >
@@ -88,7 +88,7 @@ export function AdminDashboard() {
                 {item.label}
                 {/* Badge de pendientes */}
                 {item.badge && item.badge > 0 ? (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-amber-400 text-purple-deep text-[10px] font-bold rounded-full flex items-center justify-center">
+                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-amber-400 text-bruma-brown text-[10px] font-bold rounded-full flex items-center justify-center">
                     {item.badge > 9 ? '9+' : item.badge}
                   </span>
                 ) : null}
@@ -141,14 +141,14 @@ export function AdminDashboard() {
                 onClick={() => { setActiveSection(item.id); setMobileMenuOpen(false); }}
                 className={`relative flex flex-col items-center gap-1 px-2 py-2.5 rounded-xl text-xs font-medium transition-all ${
                   activeSection === item.id
-                    ? 'bg-white text-primary-700'
+                    ? 'bg-white text-bruma-blue'
                     : 'text-white/70 hover:text-white hover:bg-white/15'
                 }`}
               >
                 <item.icon className="w-4 h-4" strokeWidth={1.8} />
                 {item.label}
                 {item.badge && item.badge > 0 ? (
-                  <span className="absolute top-1 right-1 w-4 h-4 bg-amber-400 text-purple-deep text-[8px] font-bold rounded-full flex items-center justify-center">
+                  <span className="absolute top-1 right-1 w-4 h-4 bg-amber-400 text-bruma-brown text-[8px] font-bold rounded-full flex items-center justify-center">
                     {item.badge}
                   </span>
                 ) : null}
@@ -165,11 +165,11 @@ export function AdminDashboard() {
         {activeSection === 'overview' && (
           <div className="space-y-8 animate-fade-in">
             <div>
-              <h1 className="font-display text-3xl font-bold text-purple-deep">
+              <h1 className="font-display text-3xl font-bold text-bruma-brown">
                 Bienvenida, {user?.displayName?.split(' ')[0]} 👋
               </h1>
-              <p className="text-muted-foreground mt-1">
-                Este es el panel de administración de Loop Bakery.
+              <p className="text-bruma-brown-light mt-1">
+                Este es el panel de administración de Bruma Cafe.
               </p>
             </div>
 
@@ -218,11 +218,11 @@ export function AdminDashboard() {
 
             {/* Acciones rápidas */}
             <div>
-              <h2 className="font-display text-lg font-semibold text-purple-deep mb-4">Acciones rápidas</h2>
+              <h2 className="font-display text-lg font-semibold text-bruma-brown mb-4">Acciones rápidas</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
                   { id: 'orders' as AdminSection, icon: ClipboardList, title: 'Ver pedidos', desc: 'Gestionar pedidos pendientes', bg: 'bg-amber-50', iconBg: 'bg-amber-100', iconColor: 'text-amber-600' },
-                  { id: 'catalog' as AdminSection, icon: Package, title: 'Gestionar catálogo', desc: 'Ver, agregar y editar', bg: 'bg-white', iconBg: 'bg-primary-100', iconColor: 'text-primary-700' },
+                  { id: 'catalog' as AdminSection, icon: Package, title: 'Gestionar catálogo', desc: 'Ver, agregar y editar', bg: 'bg-white', iconBg: 'bg-bruma-blue/10', iconColor: 'text-bruma-blue' },
                   { id: 'stock' as AdminSection, icon: Warehouse, title: 'Control de stock', desc: 'Actualizar cantidades', bg: 'bg-white', iconBg: 'bg-emerald-100', iconColor: 'text-emerald-600' },
                   { id: 'stats' as AdminSection, icon: BarChart3, title: 'Estadísticas', desc: 'Ver gráficos de ventas', bg: 'bg-white', iconBg: 'bg-blue-100', iconColor: 'text-blue-600' },
                 ].map(action => (
@@ -230,14 +230,14 @@ export function AdminDashboard() {
                     key={action.id}
                     id={`overview-go-${action.id}`}
                     onClick={() => setActiveSection(action.id)}
-                    className={`flex items-center gap-4 p-5 ${action.bg} rounded-2xl border border-primary-100 shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 text-left`}
+                    className={`flex items-center gap-4 p-5 ${action.bg} rounded-2xl border border-bruma-cream-mid shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 text-left`}
                   >
                     <div className={`w-12 h-12 rounded-2xl ${action.iconBg} flex items-center justify-center flex-shrink-0`}>
                       <action.icon className={`w-6 h-6 ${action.iconColor}`} strokeWidth={1.8} />
                     </div>
                     <div>
-                      <p className="font-semibold text-purple-deep">{action.title}</p>
-                      <p className="text-muted-foreground text-sm">{action.desc}</p>
+                      <p className="font-semibold text-bruma-brown">{action.title}</p>
+                      <p className="text-bruma-brown-light text-sm">{action.desc}</p>
                     </div>
                   </button>
                 ))}
@@ -250,16 +250,16 @@ export function AdminDashboard() {
               href="/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-5 py-3 bg-white rounded-2xl border border-primary-100 shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 text-sm font-medium text-purple-deep"
+              className="inline-flex items-center gap-3 px-5 py-3 bg-white rounded-2xl border border-bruma-cream-mid shadow-card hover:shadow-card-hover hover:-translate-y-0.5 transition-all duration-300 text-sm font-medium text-bruma-brown"
             >
-              <ShoppingBag className="w-5 h-5 text-primary-700" strokeWidth={1.8} />
+              <ShoppingBag className="w-5 h-5 text-bruma-blue" strokeWidth={1.8} />
               Ver sitio de clientes ↗
             </a>
 
             {/* Lista rápida de stock bajo */}
             {(lowStock > 0 || outOfStock > 0) && (
               <div>
-                <h2 className="font-display text-lg font-semibold text-purple-deep mb-4 flex items-center gap-2">
+                <h2 className="font-display text-lg font-semibold text-bruma-brown mb-4 flex items-center gap-2">
                   <AlertTriangle className="w-5 h-5 text-amber-500" strokeWidth={1.8} />
                   Productos a revisar
                 </h2>
@@ -270,10 +270,10 @@ export function AdminDashboard() {
                     .slice(0, 6)
                     .map(p => (
                       <div key={p.id} className="flex items-center gap-3 px-4 py-3 border-b border-gray-50 last:border-0">
-                        <div className="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0 bg-cream-200">
+                        <div className="w-9 h-9 rounded-xl overflow-hidden flex-shrink-0 bg-bruma-cream-dark">
                           {p.image && <img src={p.image} alt={p.name} className="w-full h-full object-cover" />}
                         </div>
-                        <p className="flex-1 font-medium text-purple-deep text-sm truncate">{p.name}</p>
+                        <p className="flex-1 font-medium text-bruma-brown text-sm truncate">{p.name}</p>
                         <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${
                           p.stock === 0 ? 'bg-red-100 text-red-600' : 'bg-amber-100 text-amber-700'
                         }`}>
@@ -322,7 +322,7 @@ export function AdminDashboard() {
 // ─── Metric Card ─────────────────────────────────────────────
 
 const COLOR_MAP = {
-  purple: { bg: 'bg-primary-100', icon: 'text-primary-700', val: 'text-primary-700' },
+  purple: { bg: 'bg-bruma-blue/10', icon: 'text-bruma-blue', val: 'text-bruma-blue' },
   blue:   { bg: 'bg-blue-100',    icon: 'text-blue-600',    val: 'text-blue-700' },
   amber:  { bg: 'bg-amber-100',   icon: 'text-amber-600',   val: 'text-amber-700' },
   red:    { bg: 'bg-red-100',     icon: 'text-red-500',     val: 'text-red-600' },
@@ -339,12 +339,12 @@ function MetricCard({
 }) {
   const c = COLOR_MAP[color];
   return (
-    <div className={`bg-white rounded-2xl border shadow-card p-5 ${alert ? 'border-amber-200' : 'border-primary-100'}`}>
+    <div className={`bg-white rounded-2xl border shadow-card p-5 ${alert ? 'border-amber-200' : 'border-bruma-cream-mid'}`}>
       <div className={`w-10 h-10 rounded-xl ${c.bg} flex items-center justify-center mb-3`}>
         <Icon className={`w-5 h-5 ${c.icon}`} strokeWidth={1.8} />
       </div>
       <p className={`font-bold text-2xl ${c.val} leading-none`}>{value}</p>
-      <p className="text-muted-foreground text-xs mt-1">{label}</p>
+      <p className="text-bruma-brown-light text-xs mt-1">{label}</p>
     </div>
   );
 }

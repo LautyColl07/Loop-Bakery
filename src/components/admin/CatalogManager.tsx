@@ -77,10 +77,10 @@ export function CatalogManager() {
   };
 
   const SortIcon = ({ field }: { field: SortField }) => {
-    if (sortField !== field) return <ChevronUp className="w-3 h-3 text-muted-foreground/40" strokeWidth={2} />;
+    if (sortField !== field) return <ChevronUp className="w-3 h-3 text-bruma-brown-light/40" strokeWidth={2} />;
     return sortDir === 'asc'
-      ? <ChevronUp className="w-3 h-3 text-primary-700" strokeWidth={2.5} />
-      : <ChevronDown className="w-3 h-3 text-primary-700" strokeWidth={2.5} />;
+      ? <ChevronUp className="w-3 h-3 text-bruma-blue" strokeWidth={2.5} />
+      : <ChevronDown className="w-3 h-3 text-bruma-blue" strokeWidth={2.5} />;
   };
 
   return (
@@ -89,8 +89,8 @@ export function CatalogManager() {
       {/* ── Header ────────────────────────────────────────── */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h2 className="font-display text-2xl font-bold text-purple-deep">Gestión de catálogo</h2>
-          <p className="text-muted-foreground text-sm mt-0.5">
+          <h2 className="font-display text-2xl font-bold text-bruma-brown">Gestión de catálogo</h2>
+          <p className="text-bruma-brown-light text-sm mt-0.5">
             {products.length} productos en total · {filtered.length} mostrando
           </p>
         </div>
@@ -107,17 +107,17 @@ export function CatalogManager() {
       {/* ── Filtros ───────────────────────────────────────── */}
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" strokeWidth={1.8} />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-bruma-brown-light" strokeWidth={1.8} />
           <input
             id="catalog-search"
             type="text"
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Buscar por nombre o descripción..."
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl border-2 border-primary-100 hover:border-primary-300 focus:border-primary-400 focus:outline-none text-sm bg-white transition-colors"
+            className="w-full pl-10 pr-4 py-2.5 rounded-xl border-2 border-bruma-cream-mid hover:border-bruma-teal focus:border-bruma-teal focus:outline-none text-sm bg-white transition-colors"
           />
           {search && (
-            <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-purple-deep transition-colors">
+            <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-bruma-brown-light hover:text-bruma-brown transition-colors">
               <X className="w-4 h-4" strokeWidth={2} />
             </button>
           )}
@@ -126,7 +126,7 @@ export function CatalogManager() {
           id="catalog-filter"
           value={filterCat}
           onChange={e => setFilterCat(e.target.value)}
-          className="px-4 py-2.5 rounded-xl border-2 border-primary-100 hover:border-primary-300 focus:border-primary-400 focus:outline-none text-sm bg-white appearance-none cursor-pointer"
+          className="px-4 py-2.5 rounded-xl border-2 border-bruma-cream-mid hover:border-bruma-teal focus:border-bruma-teal focus:outline-none text-sm bg-white appearance-none cursor-pointer"
         >
           <option value="all">Todas las categorías</option>
           <option value="armadas">Cajas armadas</option>
@@ -136,20 +136,20 @@ export function CatalogManager() {
       </div>
 
       {/* ── Tabla ─────────────────────────────────────────── */}
-      <div className="bg-white rounded-2xl border border-primary-100 shadow-card overflow-hidden">
+      <div className="bg-white rounded-2xl border border-bruma-cream-mid shadow-card overflow-hidden">
 
         {/* Header de la tabla */}
-        <div className="grid grid-cols-[3fr_1fr_1fr_1fr_auto] gap-3 px-4 py-3 bg-primary-50 border-b border-primary-100 text-xs font-semibold text-muted-foreground">
-          <button onClick={() => toggleSort('name')} className="flex items-center gap-1 text-left hover:text-purple-deep transition-colors">
+        <div className="grid grid-cols-[3fr_1fr_1fr_1fr_auto] gap-3 px-4 py-3 bg-bruma-blue/5 border-b border-bruma-cream-mid text-xs font-semibold text-bruma-brown-light">
+          <button onClick={() => toggleSort('name')} className="flex items-center gap-1 text-left hover:text-bruma-brown transition-colors">
             Producto <SortIcon field="name" />
           </button>
-          <button onClick={() => toggleSort('category')} className="flex items-center gap-1 hover:text-purple-deep transition-colors">
+          <button onClick={() => toggleSort('category')} className="flex items-center gap-1 hover:text-bruma-brown transition-colors">
             Categoría <SortIcon field="category" />
           </button>
-          <button onClick={() => toggleSort('price')} className="flex items-center gap-1 hover:text-purple-deep transition-colors">
+          <button onClick={() => toggleSort('price')} className="flex items-center gap-1 hover:text-bruma-brown transition-colors">
             Precio <SortIcon field="price" />
           </button>
-          <button onClick={() => toggleSort('stock')} className="flex items-center gap-1 hover:text-purple-deep transition-colors">
+          <button onClick={() => toggleSort('stock')} className="flex items-center gap-1 hover:text-bruma-brown transition-colors">
             Stock <SortIcon field="stock" />
           </button>
           <span>Acciones</span>
@@ -158,14 +158,14 @@ export function CatalogManager() {
         {/* Filas */}
         {filtered.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 gap-3 text-center">
-            <div className="w-14 h-14 rounded-full bg-primary-50 flex items-center justify-center">
-              <Package className="w-6 h-6 text-primary-300" strokeWidth={1.5} />
+            <div className="w-14 h-14 rounded-full bg-bruma-blue/5 flex items-center justify-center">
+              <Package className="w-6 h-6 text-bruma-teal" strokeWidth={1.5} />
             </div>
-            <p className="font-medium text-muted-foreground">No se encontraron productos</p>
-            {search && <button onClick={() => setSearch('')} className="text-primary-700 text-sm underline">Limpiar búsqueda</button>}
+            <p className="font-medium text-bruma-brown-light">No se encontraron productos</p>
+            {search && <button onClick={() => setSearch('')} className="text-bruma-blue text-sm underline">Limpiar búsqueda</button>}
           </div>
         ) : (
-          <ul className="divide-y divide-primary-50">
+          <ul className="divide-y divide-bruma-blue/5">
             {filtered.map(product => {
               const finalPrice = getFinalPrice(product);
               const isDeleting = deleteConfirm === product.id;
@@ -175,23 +175,23 @@ export function CatalogManager() {
                   key={product.id}
                   id={`catalog-row-${product.id}`}
                   className={`grid grid-cols-[3fr_1fr_1fr_1fr_auto] gap-3 px-4 py-3 items-center transition-colors duration-150 ${
-                    isDeleting ? 'bg-red-50' : 'hover:bg-cream-100'
+                    isDeleting ? 'bg-red-50' : 'hover:bg-bruma-cream'
                   }`}
                 >
                   {/* Producto */}
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="w-11 h-11 rounded-xl overflow-hidden flex-shrink-0 bg-cream-200">
+                    <div className="w-11 h-11 rounded-xl overflow-hidden flex-shrink-0 bg-bruma-cream-dark">
                       {product.image ? (
                         <img src={product.image} alt={product.name} className="w-full h-full object-cover" loading="lazy" />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">
-                          <ImageIcon className="w-5 h-5 text-primary-300" strokeWidth={1.5} />
+                          <ImageIcon className="w-5 h-5 text-bruma-teal" strokeWidth={1.5} />
                         </div>
                       )}
                     </div>
                     <div className="min-w-0">
-                      <p className="font-medium text-purple-deep text-sm leading-tight truncate">{product.name}</p>
-                      <p className="text-muted-foreground text-xs mt-0.5 truncate">{product.description}</p>
+                      <p className="font-medium text-bruma-brown text-sm leading-tight truncate">{product.name}</p>
+                      <p className="text-bruma-brown-light text-xs mt-0.5 truncate">{product.description}</p>
                     </div>
                   </div>
 
@@ -202,9 +202,9 @@ export function CatalogManager() {
 
                   {/* Precio */}
                   <div>
-                    <p className="font-bold text-primary-700 text-sm">{formatPrice(finalPrice)}</p>
+                    <p className="font-bold text-bruma-blue text-sm">{formatPrice(finalPrice)}</p>
                     {(product.discount ?? 0) > 0 && (
-                      <p className="text-xs text-muted-foreground line-through">{formatPrice(product.price)}</p>
+                      <p className="text-xs text-bruma-brown-light line-through">{formatPrice(product.price)}</p>
                     )}
                   </div>
 
@@ -221,7 +221,7 @@ export function CatalogManager() {
                           id={`catalog-edit-${product.id}`}
                           onClick={() => openEdit(product)}
                           aria-label={`Editar ${product.name}`}
-                          className="p-2 rounded-lg text-muted-foreground hover:text-primary-700 hover:bg-primary-50 transition-all"
+                          className="p-2 rounded-lg text-bruma-brown-light hover:text-bruma-blue hover:bg-bruma-blue/5 transition-all"
                           title="Editar"
                         >
                           <Edit2 className="w-4 h-4" strokeWidth={1.8} />
@@ -230,7 +230,7 @@ export function CatalogManager() {
                           id={`catalog-delete-${product.id}`}
                           onClick={() => setDeleteConfirm(product.id)}
                           aria-label={`Eliminar ${product.name}`}
-                          className="p-2 rounded-lg text-muted-foreground hover:text-red-500 hover:bg-red-50 transition-all"
+                          className="p-2 rounded-lg text-bruma-brown-light hover:text-red-500 hover:bg-red-50 transition-all"
                           title="Eliminar"
                         >
                           <Trash2 className="w-4 h-4" strokeWidth={1.8} />
@@ -249,7 +249,7 @@ export function CatalogManager() {
                         </button>
                         <button
                           onClick={() => setDeleteConfirm(null)}
-                          className="text-xs text-muted-foreground hover:text-purple-deep px-2.5 py-1.5 rounded-lg hover:bg-primary-50 transition-all"
+                          className="text-xs text-bruma-brown-light hover:text-bruma-brown px-2.5 py-1.5 rounded-lg hover:bg-bruma-blue/5 transition-all"
                         >
                           Cancelar
                         </button>

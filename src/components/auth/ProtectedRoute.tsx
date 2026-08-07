@@ -13,10 +13,10 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
   // Cargando estado de auth
   if (loading) {
     return (
-      <div className="min-h-screen bg-cream-100 flex items-center justify-center">
+      <div className="min-h-screen bg-bruma-cream flex items-center justify-center">
         <div className="flex flex-col items-center gap-3">
-          <Loader2 className="w-10 h-10 text-primary-700 animate-spin" strokeWidth={1.5} />
-          <p className="text-muted-foreground text-sm font-medium">Verificando sesión...</p>
+          <Loader2 className="w-10 h-10 text-bruma-blue animate-spin" strokeWidth={1.5} />
+          <p className="text-bruma-brown-light text-sm font-medium">Verificando sesión...</p>
         </div>
       </div>
     );
@@ -30,18 +30,18 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
   // Autenticado pero email no autorizado
   if (!isOwner) {
     return (
-      <div className="min-h-screen bg-cream-100 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-bruma-cream flex items-center justify-center p-4">
         <div className="bg-white rounded-3xl shadow-card border border-red-100 p-10 max-w-md w-full text-center space-y-5">
           <div className="w-16 h-16 bg-red-50 rounded-full flex items-center justify-center mx-auto">
             <ShieldX className="w-8 h-8 text-red-500" strokeWidth={1.5} />
           </div>
           <div>
-            <h2 className="font-display text-2xl font-bold text-purple-deep mb-2">
+            <h2 className="font-display text-2xl font-bold text-bruma-brown mb-2">
               Acceso denegado
             </h2>
-            <p className="text-muted-foreground text-sm leading-relaxed">
+            <p className="text-bruma-brown-light text-sm leading-relaxed">
               El correo <strong className="text-red-600">{user.email}</strong> no tiene permiso
-              para acceder al panel de administración de Loop Bakery.
+              para acceder al panel de administración de Bruma Cafe.
             </p>
           </div>
           <a

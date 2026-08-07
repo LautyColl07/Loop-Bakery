@@ -43,7 +43,7 @@ export function CartDrawer() {
       <div
         id="cart-overlay"
         onClick={() => setIsCartOpen(false)}
-        className={`fixed inset-0 bg-purple-deep/50 backdrop-blur-sm z-40 transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-bruma-brown/50 backdrop-blur-sm z-40 transition-opacity duration-300 ${
           isCartOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
         aria-hidden="true"
@@ -62,7 +62,7 @@ export function CartDrawer() {
           ${isCartOpen ? 'translate-x-0' : 'translate-x-full'}`}
       >
         {/* ── Header ──────────────────────────────── */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-primary-100 bg-gradient-to-r from-purple-deep to-primary-700">
+        <div className="flex items-center justify-between px-5 py-4 border-b border-bruma-cream-mid bg-gradient-to-r from-bruma-brown to-bruma-blue">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center">
               <ShoppingCart className="w-4 h-4 text-white" strokeWidth={1.8} />
@@ -71,7 +71,7 @@ export function CartDrawer() {
               <h2 className="font-display font-semibold text-white text-base leading-none">
                 Tu carrito
               </h2>
-              <p className="text-lila-light text-xs mt-0.5">
+              <p className="text-bruma-cream text-xs mt-0.5">
                 {cartCount} {cartCount === 1 ? 'ítem' : 'ítems'}
               </p>
             </div>
@@ -103,12 +103,12 @@ export function CartDrawer() {
         {!hasItems ? (
           /* Estado vacío */
           <div className="flex-1 flex flex-col items-center justify-center gap-4 px-8 text-center">
-            <div className="w-20 h-20 rounded-full bg-primary-50 flex items-center justify-center">
-              <ShoppingBag className="w-9 h-9 text-primary-300" strokeWidth={1.5} />
+            <div className="w-20 h-20 rounded-full bg-bruma-blue/5 flex items-center justify-center">
+              <ShoppingBag className="w-9 h-9 text-bruma-blue/50" strokeWidth={1.5} />
             </div>
             <div>
-              <p className="font-display font-semibold text-purple-deep text-lg">Tu carrito está vacío</p>
-              <p className="text-muted-foreground text-sm mt-1">
+              <p className="font-display font-semibold text-bruma-brown text-lg">Tu carrito está vacío</p>
+              <p className="text-bruma-brown-light text-sm mt-1">
                 Explorá nuestros productos y agregá tus favoritos.
               </p>
             </div>
@@ -132,42 +132,42 @@ export function CartDrawer() {
                   <li
                     key={product.id}
                     id={`cart-item-${product.id}`}
-                    className="flex gap-3 p-3 rounded-2xl bg-cream-100 border border-primary-50 animate-fade-in"
+                    className="flex gap-3 p-3 rounded-2xl bg-bruma-cream border border-bruma-blue/10 animate-fade-in"
                   >
-                    <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-cream-200">
+                    <div className="w-14 h-14 rounded-xl overflow-hidden flex-shrink-0 bg-bruma-cream-dark">
                       <img src={product.image} alt={product.name} className="w-full h-full object-cover" loading="lazy" />
                     </div>
 
                     <div className="flex flex-col flex-1 min-w-0 gap-1">
-                      <p className="font-medium text-purple-deep text-sm leading-snug line-clamp-1">
+                      <p className="font-medium text-bruma-brown text-sm leading-snug line-clamp-1">
                         {product.name}
                       </p>
-                      <p className="text-primary-700 font-bold text-sm">
+                      <p className="text-bruma-blue font-bold text-sm">
                         {formatPrice(final)}
                         {(product.discount ?? 0) > 0 && (
-                          <span className="ml-1.5 text-xs text-muted-foreground font-normal line-through">
+                          <span className="ml-1.5 text-xs text-bruma-brown-muted font-normal line-through">
                             {formatPrice(product.price)}
                           </span>
                         )}
                       </p>
                       <div className="flex items-center gap-2 mt-0.5">
-                        <div className="flex items-center rounded-xl border border-primary-200 bg-white overflow-hidden">
-                          <button id={`cart-decrease-${product.id}`} onClick={() => decreaseQuantity(product.id)} aria-label="Quitar" className="px-2.5 py-1.5 text-primary-700 hover:bg-primary-50 transition-colors">
+                        <div className="flex items-center rounded-xl border border-bruma-blue/20 bg-white overflow-hidden">
+                          <button id={`cart-decrease-${product.id}`} onClick={() => decreaseQuantity(product.id)} aria-label="Quitar" className="px-2.5 py-1.5 text-bruma-blue hover:bg-bruma-blue/5 transition-colors">
                             <Minus className="w-3 h-3" strokeWidth={2.5} />
                           </button>
-                          <span className="px-2 text-sm font-bold text-purple-deep min-w-[1.5rem] text-center">{quantity}</span>
-                          <button id={`cart-increase-${product.id}`} onClick={() => addToCart(product)} aria-label="Agregar" className="px-2.5 py-1.5 text-primary-700 hover:bg-primary-50 transition-colors">
+                          <span className="px-2 text-sm font-bold text-bruma-brown min-w-[1.5rem] text-center">{quantity}</span>
+                          <button id={`cart-increase-${product.id}`} onClick={() => addToCart(product)} aria-label="Agregar" className="px-2.5 py-1.5 text-bruma-blue hover:bg-bruma-blue/5 transition-colors">
                             <Plus className="w-3 h-3" strokeWidth={2.5} />
                           </button>
                         </div>
-                        <button id={`cart-remove-${product.id}`} onClick={() => removeFromCart(product.id)} aria-label={`Eliminar ${product.name}`} className="p-1.5 rounded-lg text-muted-foreground hover:text-red-500 hover:bg-red-50 transition-all">
+                        <button id={`cart-remove-${product.id}`} onClick={() => removeFromCart(product.id)} aria-label={`Eliminar ${product.name}`} className="p-1.5 rounded-lg text-bruma-brown-light hover:text-red-500 hover:bg-red-50 transition-all">
                           <Trash2 className="w-3.5 h-3.5" strokeWidth={1.8} />
                         </button>
                       </div>
                     </div>
 
                     <div className="text-right flex-shrink-0">
-                      <p className="font-bold text-purple-deep text-sm">{formatPrice(final * quantity)}</p>
+                      <p className="font-bold text-bruma-brown text-sm">{formatPrice(final * quantity)}</p>
                     </div>
                   </li>
                 );
@@ -178,25 +178,25 @@ export function CartDrawer() {
                 <li
                   key={box.id}
                   id={`cart-box-${box.id}`}
-                  className="p-3 rounded-2xl bg-primary-50 border-2 border-primary-200 animate-fade-in"
+                  className="p-3 rounded-2xl bg-bruma-blue/5 border-2 border-bruma-blue/20 animate-fade-in"
                 >
                   <div className="flex items-start justify-between gap-2 mb-2">
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-lg bg-primary-700 flex items-center justify-center flex-shrink-0">
+                      <div className="w-8 h-8 rounded-lg bg-bruma-blue flex items-center justify-center flex-shrink-0">
                         <Package className="w-4 h-4 text-white" strokeWidth={1.8} />
                       </div>
                       <div>
-                        <p className="font-semibold text-purple-deep text-sm">{box.size.label} personalizada</p>
-                        <p className="text-muted-foreground text-xs">{box.usedSlots}/{box.size.capacity} productos</p>
+                        <p className="font-semibold text-bruma-brown text-sm">{box.size.label} personalizada</p>
+                        <p className="text-bruma-brown-light text-xs">{box.usedSlots}/{box.size.capacity} productos</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <span className="font-bold text-primary-700 text-sm">{formatPrice(box.totalPrice)}</span>
+                      <span className="font-bold text-bruma-blue text-sm">{formatPrice(box.totalPrice)}</span>
                       <button
                         id={`cart-remove-box-${box.id}`}
                         onClick={() => removeCustomBox(box.id)}
                         aria-label="Eliminar caja"
-                        className="p-1.5 rounded-lg text-muted-foreground hover:text-red-500 hover:bg-red-50 transition-all"
+                        className="p-1.5 rounded-lg text-bruma-brown-light hover:text-red-500 hover:bg-red-50 transition-all"
                       >
                         <Trash2 className="w-3.5 h-3.5" strokeWidth={1.8} />
                       </button>
@@ -204,7 +204,7 @@ export function CartDrawer() {
                   </div>
                   <div className="flex flex-wrap gap-1 pl-10">
                     {box.items.map(item => (
-                      <span key={item.product.id} className="text-xs px-2 py-0.5 bg-white border border-primary-200 rounded-full text-primary-700">
+                      <span key={item.product.id} className="text-xs px-2 py-0.5 bg-white border border-bruma-blue/20 rounded-full text-bruma-blue">
                         {item.quantity}× {item.product.name}
                       </span>
                     ))}
@@ -214,10 +214,10 @@ export function CartDrawer() {
             </ul>
 
             {/* ── Footer ──────────────────────────── */}
-            <div className="border-t border-primary-100 px-5 py-4 space-y-3 bg-cream-100">
+            <div className="border-t border-bruma-cream-mid px-5 py-4 space-y-3 bg-bruma-cream">
               <div className="flex items-center justify-between">
-                <span className="text-muted-foreground font-medium text-sm">Total estimado</span>
-                <span className="font-bold text-2xl text-primary-700">{formatPrice(cartTotal)}</span>
+                <span className="text-bruma-brown-light font-medium text-sm">Total estimado</span>
+                <span className="font-bold text-2xl text-bruma-blue">{formatPrice(cartTotal)}</span>
               </div>
 
               {/* Botón principal — abre el checkout */}
@@ -227,14 +227,14 @@ export function CartDrawer() {
                   setIsCartOpen(false);
                   setIsCheckoutOpen(true);
                 }}
-                className="flex items-center justify-center gap-2.5 w-full py-4 btn-primary text-base rounded-2xl shadow-glow-purple"
+                className="flex items-center justify-center gap-2.5 w-full py-4 btn-primary text-base rounded-2xl shadow-lg"
               >
                 <ShoppingBag className="w-5 h-5" strokeWidth={1.8} />
                 Finalizar pedido
                 <ArrowRight className="w-4 h-4" strokeWidth={2} />
               </button>
 
-              <p className="text-center text-xs text-muted-foreground">
+              <p className="text-center text-xs text-bruma-brown-light">
                 Confirmás tu pedido por WhatsApp. Sin pagos online.
               </p>
             </div>

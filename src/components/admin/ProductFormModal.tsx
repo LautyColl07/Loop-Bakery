@@ -147,7 +147,7 @@ export function ProductFormModal({ product, onSave, onClose }: Props) {
       {/* Overlay */}
       <div
         onClick={onClose}
-        className="fixed inset-0 bg-purple-deep/50 backdrop-blur-sm z-[60]"
+        className="fixed inset-0 bg-bruma-brown/50 backdrop-blur-sm z-[60]"
         aria-hidden="true"
       />
 
@@ -159,7 +159,7 @@ export function ProductFormModal({ product, onSave, onClose }: Props) {
         className="fixed top-0 right-0 h-full w-full max-w-lg bg-white z-[70] shadow-2xl flex flex-col"
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-purple-deep to-primary-700 flex-shrink-0">
+        <div className="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-bruma-brown to-bruma-blue flex-shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-xl bg-white/15 flex items-center justify-center">
               <Package className="w-4 h-4 text-white" strokeWidth={1.8} />
@@ -169,7 +169,7 @@ export function ProductFormModal({ product, onSave, onClose }: Props) {
                 {isEditing ? 'Editar producto' : 'Nuevo producto'}
               </h2>
               {isEditing && (
-                <p className="text-lila-light text-xs mt-0.5">ID #{product?.id}</p>
+                <p className="text-bruma-cream text-xs mt-0.5">ID #{product?.id}</p>
               )}
             </div>
           </div>
@@ -188,7 +188,7 @@ export function ProductFormModal({ product, onSave, onClose }: Props) {
 
           {/* Preview de imagen */}
           <div className="flex gap-4 items-start">
-            <div className="w-24 h-24 rounded-2xl border-2 border-primary-100 overflow-hidden flex-shrink-0 bg-cream-200 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-2xl border-2 border-bruma-cream-mid overflow-hidden flex-shrink-0 bg-bruma-cream-dark flex items-center justify-center">
               {form.image && !previewError ? (
                 <img
                   src={form.image}
@@ -197,15 +197,15 @@ export function ProductFormModal({ product, onSave, onClose }: Props) {
                   onError={() => setPreviewError(true)}
                 />
               ) : (
-                <div className="flex flex-col items-center gap-1 text-primary-300">
+                <div className="flex flex-col items-center gap-1 text-bruma-teal">
                   <ImageIcon className="w-8 h-8" strokeWidth={1.5} />
                   <span className="text-xs">Sin imagen</span>
                 </div>
               )}
             </div>
             <div className="flex-1 space-y-1.5">
-              <label htmlFor="pf-image" className="text-sm font-medium text-purple-deep flex items-center gap-1.5">
-                <ImageIcon className="w-3.5 h-3.5 text-primary-700" strokeWidth={2} />
+              <label htmlFor="pf-image" className="text-sm font-medium text-bruma-brown flex items-center gap-1.5">
+                <ImageIcon className="w-3.5 h-3.5 text-bruma-blue" strokeWidth={2} />
                 URL de imagen
               </label>
               <input
@@ -214,8 +214,8 @@ export function ProductFormModal({ product, onSave, onClose }: Props) {
                 value={form.image}
                 onChange={e => { set('image', e.target.value); setPreviewError(false); }}
                 placeholder="https://..."
-                className={`w-full px-3 py-2.5 rounded-xl border-2 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-primary-400 ${
-                  errors.image ? 'border-red-300 bg-red-50' : 'border-primary-100 hover:border-primary-300'
+                className={`w-full px-3 py-2.5 rounded-xl border-2 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-bruma-teal ${
+                  errors.image ? 'border-red-300 bg-red-50' : 'border-bruma-cream-mid hover:border-bruma-teal'
                 }`}
               />
               <p className="text-xs text-muted-foreground">
@@ -228,7 +228,7 @@ export function ProductFormModal({ product, onSave, onClose }: Props) {
           {/* Nombre */}
           <Field
             id="pf-name" label="Nombre del producto" required
-            icon={<Tag className="w-3.5 h-3.5 text-primary-700" strokeWidth={2} />}
+            icon={<Tag className="w-3.5 h-3.5 text-bruma-blue" strokeWidth={2} />}
             error={errors.name}
           >
             <input
@@ -244,7 +244,7 @@ export function ProductFormModal({ product, onSave, onClose }: Props) {
           {/* Descripción */}
           <Field
             id="pf-desc" label="Descripción" required
-            icon={<FileText className="w-3.5 h-3.5 text-primary-700" strokeWidth={2} />}
+            icon={<FileText className="w-3.5 h-3.5 text-bruma-blue" strokeWidth={2} />}
             error={errors.description}
           >
             <textarea
@@ -260,7 +260,7 @@ export function ProductFormModal({ product, onSave, onClose }: Props) {
           {/* Categoría */}
           <Field
             id="pf-cat" label="Categoría"
-            icon={<Package className="w-3.5 h-3.5 text-primary-700" strokeWidth={2} />}
+            icon={<Package className="w-3.5 h-3.5 text-bruma-blue" strokeWidth={2} />}
           >
             <select
               id="pf-cat"
@@ -278,7 +278,7 @@ export function ProductFormModal({ product, onSave, onClose }: Props) {
           <div className="grid grid-cols-2 gap-4">
             <Field
               id="pf-price" label="Precio (ARS)" required
-              icon={<DollarSign className="w-3.5 h-3.5 text-primary-700" strokeWidth={2} />}
+              icon={<DollarSign className="w-3.5 h-3.5 text-bruma-blue" strokeWidth={2} />}
               error={errors.price}
             >
               <input
@@ -293,7 +293,7 @@ export function ProductFormModal({ product, onSave, onClose }: Props) {
             </Field>
             <Field
               id="pf-stock" label="Stock (unidades)" required
-              icon={<BarChart2 className="w-3.5 h-3.5 text-primary-700" strokeWidth={2} />}
+              icon={<BarChart2 className="w-3.5 h-3.5 text-bruma-blue" strokeWidth={2} />}
               error={errors.stock}
             >
               <input
@@ -311,7 +311,7 @@ export function ProductFormModal({ product, onSave, onClose }: Props) {
           {/* Descuento */}
           <Field
             id="pf-discount" label="Descuento (%)"
-            icon={<Tag className="w-3.5 h-3.5 text-primary-700" strokeWidth={2} />}
+            icon={<Tag className="w-3.5 h-3.5 text-bruma-blue" strokeWidth={2} />}
             error={errors.discount}
             hint="Dejá en 0 si no hay descuento"
           >
@@ -329,13 +329,13 @@ export function ProductFormModal({ product, onSave, onClose }: Props) {
 
           {/* Preview de precio final */}
           {previewPrice > 0 && (
-            <div className="flex items-center justify-between p-4 rounded-2xl bg-primary-50 border border-primary-100">
+            <div className="flex items-center justify-between p-4 rounded-2xl bg-bruma-blue/5 border border-bruma-cream-mid">
               <div>
-                <p className="text-xs text-muted-foreground mb-0.5">Precio que verá el cliente</p>
+                <p className="text-xs text-bruma-brown-light mb-0.5">Precio que verá el cliente</p>
                 <div className="flex items-center gap-2">
-                  <span className="font-bold text-primary-700 text-xl">{formatPrice(finalPrice)}</span>
+                  <span className="font-bold text-bruma-blue text-xl">{formatPrice(finalPrice)}</span>
                   {previewDiscount > 0 && (
-                    <span className="text-sm text-muted-foreground line-through">{formatPrice(previewPrice)}</span>
+                    <span className="text-sm text-bruma-brown-light line-through">{formatPrice(previewPrice)}</span>
                   )}
                   {previewDiscount > 0 && (
                     <span className="text-xs font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-full">
@@ -349,11 +349,11 @@ export function ProductFormModal({ product, onSave, onClose }: Props) {
         </div>
 
         {/* Footer con acciones */}
-        <div className="px-6 py-4 border-t border-primary-100 bg-cream-100 flex-shrink-0 flex gap-3">
+        <div className="px-6 py-4 border-t border-bruma-cream-mid bg-bruma-cream flex-shrink-0 flex gap-3">
           <button
             id="product-form-cancel"
             onClick={onClose}
-            className="flex-1 py-3 rounded-xl border-2 border-primary-200 text-primary-700 font-semibold text-sm hover:bg-primary-50 transition-all"
+            className="flex-1 py-3 rounded-xl border-2 border-bruma-blue/20 text-bruma-blue font-semibold text-sm hover:bg-bruma-blue/5 transition-all"
           >
             Cancelar
           </button>
@@ -374,8 +374,8 @@ export function ProductFormModal({ product, onSave, onClose }: Props) {
 // ─── Sub-componentes de formulario ────────────────────────────
 
 function inputClass(hasError: boolean) {
-  return `w-full px-3 py-2.5 rounded-xl border-2 text-sm bg-white transition-colors focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-primary-400 ${
-    hasError ? 'border-red-300 bg-red-50' : 'border-primary-100 hover:border-primary-300'
+  return `w-full px-3 py-2.5 rounded-xl border-2 text-sm bg-white transition-colors focus:outline-none focus:ring-2 focus:ring-bruma-teal focus:border-bruma-teal ${
+    hasError ? 'border-red-300 bg-red-50' : 'border-bruma-cream-mid hover:border-bruma-teal'
   }`;
 }
 
@@ -401,13 +401,13 @@ function Field({
 }) {
   return (
     <div className="space-y-1.5">
-      <label htmlFor={id} className="text-sm font-medium text-purple-deep flex items-center gap-1.5">
+      <label htmlFor={id} className="text-sm font-medium text-bruma-brown flex items-center gap-1.5">
         {icon}
         {label}
         {required && <span className="text-red-400">*</span>}
       </label>
       {children}
-      {hint && <p className="text-xs text-muted-foreground">{hint}</p>}
+      {hint && <p className="text-xs text-bruma-brown-light">{hint}</p>}
       {error && <FieldError msg={error} />}
     </div>
   );

@@ -3,18 +3,18 @@
 @tailwind utilities;
 
 /* ─────────────────────────────────────────
-   CSS Custom Properties — Loop Bakery Theme
+   CSS Custom Properties — Bruma Cafe Theme
    ───────────────────────────────────────── */
 :root {
-  --color-primary:     #7B4B94;
-  --color-primary-light: #9B6BB0;
-  --color-lila:        #C8A2D8;
-  --color-lila-light:  #E8D4F1;
-  --color-cream:       #FFF8F3;
-  --color-cream-dark:  #F5EBE0;
-  --color-purple-deep: #2D1B2E;
-  --color-purple-dark: #3E214D;
-  --color-muted-fg:    #6B5A6E;
+  --color-primary:       #5B8296;
+  --color-primary-dark:  #4A6D7E;
+  --color-teal:          #88C0C7;
+  --color-teal-light:    #B5D9DE;
+  --color-cream:         #FAF2E1;
+  --color-cream-dark:    #F0E5CE;
+  --color-brown:         #402E23;
+  --color-brown-light:   #6B4E3B;
+  --color-brown-muted:   #9A7E6B;
 }
 
 /* ─────────────────────────────────────────
@@ -33,9 +33,9 @@
   }
 
   body {
-    font-family: 'Outfit', 'Inter', system-ui, sans-serif;
-    background-color: #FFF8F3;
-    color: #2D1B2E;
+    font-family: 'Inter', 'Outfit', system-ui, sans-serif;
+    background-color: #FAF2E1;
+    color: #402E23;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -61,26 +61,26 @@
    Component Utilities
    ───────────────────────────────────────── */
 @layer components {
-  /* Botón primario */
+  /* Botón primario — Azul Bruma */
   .btn-primary {
-    @apply bg-primary-700 text-white px-6 py-3 rounded-2xl font-semibold
-           transition-all duration-300 hover:bg-primary-800 hover:shadow-glow-purple
+    @apply bg-bruma-blue text-white px-6 py-3 rounded-2xl font-semibold
+           transition-all duration-300 hover:bg-bruma-blue-dark hover:shadow-glow-purple
            hover:-translate-y-0.5 active:translate-y-0 focus:outline-none
-           focus:ring-2 focus:ring-primary-400 focus:ring-offset-2;
+           focus:ring-2 focus:ring-bruma-teal focus:ring-offset-2;
   }
 
   /* Botón secundario */
   .btn-secondary {
-    @apply border-2 border-primary-700 text-primary-700 px-6 py-3 rounded-2xl
+    @apply border-2 border-bruma-blue text-bruma-blue px-6 py-3 rounded-2xl
            font-semibold bg-transparent transition-all duration-300
-           hover:bg-primary-50 hover:shadow-glow-lila
+           hover:bg-bruma-blue/10 hover:shadow-glow-lila
            hover:-translate-y-0.5 active:translate-y-0 focus:outline-none
-           focus:ring-2 focus:ring-primary-400 focus:ring-offset-2;
+           focus:ring-2 focus:ring-bruma-teal focus:ring-offset-2;
   }
 
   /* Card base */
   .card {
-    @apply bg-white rounded-3xl shadow-card border border-primary-100
+    @apply bg-white rounded-3xl shadow-card border border-bruma-cream-mid/50
            transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1;
   }
 
@@ -89,27 +89,27 @@
     @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold;
   }
 
-  /* Separador decorativo */
+  /* Separador decorativo — ahora azul/teal */
   .divider-lila {
     @apply w-16 h-1 rounded-full mx-auto;
-    background: linear-gradient(to right, #7B4B94, #C8A2D8);
+    background: linear-gradient(to right, #5B8296, #88C0C7);
   }
 
   /* Gradiente de texto */
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(to right, #7B4B94, #9B6BB0);
+    background-image: linear-gradient(to right, #5B8296, #4A6D7E);
   }
 
   /* Nav tab activo */
   .nav-tab {
     @apply flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm
            whitespace-nowrap transition-all duration-300 cursor-pointer
-           focus:outline-none focus:ring-2 focus:ring-primary-300;
+           focus:outline-none focus:ring-2 focus:ring-bruma-teal/50;
   }
 
   .nav-tab-active {
-    @apply bg-white text-primary-700 shadow-md;
+    @apply bg-white text-bruma-blue shadow-md;
   }
 
   .nav-tab-inactive {
@@ -125,14 +125,14 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #F5EBE0;
+  background: #F0E5CE;
 }
 ::-webkit-scrollbar-thumb {
-  background: #C8A2D8;
+  background: #88C0C7;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #7B4B94;
+  background: #5B8296;
 }
 
 /* ─────────────────────────────────────────
@@ -147,14 +147,14 @@
   }
 
   .glass-dark {
-    background: rgba(45, 27, 46, 0.6);
+    background: rgba(64, 46, 35, 0.6);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(200, 162, 216, 0.2);
+    border: 1px solid rgba(136, 192, 199, 0.2);
   }
 
   .pattern-dots {
-    background-image: radial-gradient(circle, rgba(123,75,148,0.12) 1px, transparent 1px);
+    background-image: radial-gradient(circle, rgba(91,130,150,0.1) 1px, transparent 1px);
     background-size: 24px 24px;
   }
 }

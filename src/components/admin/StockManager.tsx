@@ -47,18 +47,18 @@ export function StockManager() {
       {/* ── Header ──────────────────────────────────── */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="font-display text-2xl font-bold text-purple-deep flex items-center gap-2">
-            <Warehouse className="w-6 h-6 text-primary-700" strokeWidth={1.8} />
+          <h2 className="font-display text-2xl font-bold text-bruma-brown flex items-center gap-2">
+            <Warehouse className="w-6 h-6 text-bruma-blue" strokeWidth={1.8} />
             Gestión de Stock
           </h2>
-          <p className="text-muted-foreground text-sm mt-1">
+          <p className="text-bruma-brown-light text-sm mt-1">
             Actualizá rápidamente las cantidades disponibles
           </p>
         </div>
 
         {/* Mini métricas */}
         <div className="flex items-center gap-3 text-xs font-medium">
-          <span className="px-3 py-1.5 bg-primary-100 text-primary-700 rounded-full">
+          <span className="px-3 py-1.5 bg-bruma-blue/10 text-bruma-blue rounded-full">
             {totalUnits} unidades totales
           </span>
           {outOfStock > 0 && (
@@ -76,24 +76,24 @@ export function StockManager() {
 
       {/* ── Buscador ───────────────────────────────── */}
       <div className="relative">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" strokeWidth={1.8} />
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-bruma-brown-light" strokeWidth={1.8} />
         <input
           id="stock-search"
           type="text"
           placeholder="Buscar producto..."
           value={search}
           onChange={e => setSearch(e.target.value)}
-          className="w-full pl-11 pr-4 py-3 rounded-2xl border-2 border-primary-100 bg-white text-sm
-            placeholder:text-muted-foreground
-            focus:outline-none focus:border-primary-400 focus:ring-2 focus:ring-primary-200
+          className="w-full pl-11 pr-4 py-3 rounded-2xl border-2 border-bruma-cream-mid bg-white text-sm
+            placeholder:text-bruma-brown-light
+            focus:outline-none focus:border-bruma-teal focus:ring-2 focus:ring-bruma-teal/20
             transition-all duration-200"
         />
       </div>
 
       {/* ── Tabla de stock ──────────────────────────── */}
-      <div className="bg-white rounded-2xl border border-primary-100 shadow-card overflow-hidden">
+      <div className="bg-white rounded-2xl border border-bruma-cream-mid shadow-card overflow-hidden">
         {/* Header de tabla */}
-        <div className="hidden sm:grid grid-cols-[auto_1fr_auto_auto_auto] gap-4 items-center px-5 py-3 bg-cream-100 border-b border-primary-100 text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+        <div className="hidden sm:grid grid-cols-[auto_1fr_auto_auto_auto] gap-4 items-center px-5 py-3 bg-bruma-cream border-b border-bruma-cream-mid text-xs font-semibold text-bruma-brown-light uppercase tracking-wide">
           <span className="w-10">IMG</span>
           <span>Producto</span>
           <span className="text-center w-20">Estado</span>
@@ -103,7 +103,7 @@ export function StockManager() {
 
         {/* Filas */}
         {filtered.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
+          <div className="flex flex-col items-center justify-center py-16 text-bruma-brown-light">
             <Package className="w-12 h-12 mb-3 opacity-30" strokeWidth={1.2} />
             <p className="text-sm font-medium">No se encontraron productos</p>
           </div>
@@ -114,23 +114,23 @@ export function StockManager() {
               return (
                 <div
                   key={product.id}
-                  className="grid grid-cols-1 sm:grid-cols-[auto_1fr_auto_auto_auto] gap-3 sm:gap-4 items-center px-5 py-4 hover:bg-cream-100/50 transition-colors duration-150"
+                  className="grid grid-cols-1 sm:grid-cols-[auto_1fr_auto_auto_auto] gap-3 sm:gap-4 items-center px-5 py-4 hover:bg-bruma-cream transition-colors duration-150"
                 >
                   {/* Imagen */}
-                  <div className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0 bg-cream-200">
+                  <div className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0 bg-bruma-cream-dark">
                     {product.image ? (
                       <img src={product.image} alt={product.name} className="w-full h-full object-cover" loading="lazy" />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
-                        <Package className="w-4 h-4 text-primary-300" strokeWidth={1.5} />
+                        <Package className="w-4 h-4 text-bruma-teal" strokeWidth={1.5} />
                       </div>
                     )}
                   </div>
 
                   {/* Nombre */}
                   <div className="min-w-0">
-                    <p className="font-medium text-purple-deep text-sm truncate">{product.name}</p>
-                    <p className="text-xs text-muted-foreground truncate">{product.category}</p>
+                    <p className="font-medium text-bruma-brown text-sm truncate">{product.name}</p>
+                    <p className="text-xs text-bruma-brown-light truncate">{product.category}</p>
                   </div>
 
                   {/* Badge estado */}
@@ -142,7 +142,7 @@ export function StockManager() {
 
                   {/* Precio */}
                   <div className="w-28 text-center">
-                    <span className="text-sm font-semibold text-primary-700">
+                    <span className="text-sm font-semibold text-bruma-blue">
                       {formatPrice(product.price)}
                     </span>
                   </div>
@@ -167,8 +167,8 @@ export function StockManager() {
                       min="0"
                       value={product.stock}
                       onChange={e => handleStockInput(product.id, e.target.value)}
-                      className="w-14 h-8 text-center text-sm font-bold text-purple-deep bg-cream-100 rounded-xl border border-primary-100
-                        focus:outline-none focus:border-primary-400 focus:ring-1 focus:ring-primary-200
+                      className="w-14 h-8 text-center text-sm font-bold text-bruma-brown bg-bruma-cream rounded-xl border border-bruma-cream-mid
+                        focus:outline-none focus:border-bruma-teal focus:ring-1 focus:ring-bruma-teal/20
                         [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                     />
 
@@ -186,16 +186,16 @@ export function StockManager() {
                     <div className="hidden lg:flex gap-1 ml-1">
                       <button
                         onClick={() => handleStockChange(product.id, 5)}
-                        className="px-2 h-7 rounded-lg bg-primary-50 border border-primary-100 text-[10px] font-bold text-primary-600
-                          hover:bg-primary-100 transition-colors"
+                        className="px-2 h-7 rounded-lg bg-bruma-blue/5 border border-bruma-cream-mid text-[10px] font-bold text-bruma-blue
+                          hover:bg-bruma-blue/10 transition-colors"
                         title="+5"
                       >
                         +5
                       </button>
                       <button
                         onClick={() => handleStockChange(product.id, 10)}
-                        className="px-2 h-7 rounded-lg bg-primary-50 border border-primary-100 text-[10px] font-bold text-primary-600
-                          hover:bg-primary-100 transition-colors"
+                        className="px-2 h-7 rounded-lg bg-bruma-blue/5 border border-bruma-cream-mid text-[10px] font-bold text-bruma-blue
+                          hover:bg-bruma-blue/10 transition-colors"
                         title="+10"
                       >
                         +10

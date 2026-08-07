@@ -45,15 +45,15 @@ export function CateringSection() {
 
       {/* ── Header ────────────────────────────────── */}
       <div className="text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-100 text-primary-700 text-sm font-medium mb-4">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-bruma-blue/10 text-bruma-blue text-sm font-medium mb-4">
           <Users className="w-4 h-4" strokeWidth={1.8} />
           Eventos y celebraciones
         </div>
-        <h2 className="font-display text-4xl sm:text-5xl font-bold text-purple-deep mb-3">
-          Servicio de fiesta y cáterin
+        <h2 className="font-display text-4xl sm:text-5xl font-bold text-bruma-brown mb-3">
+          Cátering & Eventos
         </h2>
         <div className="divider-lila mb-4" />
-        <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+        <p className="text-bruma-brown-light text-lg max-w-2xl mx-auto">
           Convertimos tu evento en una experiencia dulce e inolvidable. Desde cumpleaños íntimos
           hasta grandes celebraciones, tenemos el plan perfecto para vos.
         </p>
@@ -64,19 +64,19 @@ export function CateringSection() {
         {INCLUDED_FEATURES.map(({ icon: Icon, label }) => (
           <div
             key={label}
-            className="flex items-start gap-3 p-4 rounded-2xl bg-primary-50 border border-primary-100"
+            className="flex items-start gap-3 p-4 rounded-2xl bg-bruma-blue/5 border border-bruma-blue/20"
           >
-            <div className="w-9 h-9 rounded-xl bg-primary-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <div className="w-9 h-9 rounded-xl bg-bruma-blue flex items-center justify-center flex-shrink-0 mt-0.5">
               <Icon className="w-4 h-4 text-white" strokeWidth={1.8} />
             </div>
-            <p className="text-sm text-purple-deep font-medium leading-snug">{label}</p>
+            <p className="text-sm text-bruma-brown font-medium leading-snug">{label}</p>
           </div>
         ))}
       </div>
 
       {/* ── Cards de paquetes ─────────────────────── */}
       <div>
-        <h3 className="font-display text-2xl font-semibold text-purple-deep text-center mb-8">
+        <h3 className="font-display text-2xl font-semibold text-bruma-brown text-center mb-8">
           Elegí tu paquete
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
@@ -88,13 +88,13 @@ export function CateringSection() {
                 id={`catering-card-${option.id}`}
                 className={`relative flex flex-col rounded-3xl border-2 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover ${
                   isPopular
-                    ? 'border-primary-700 shadow-glow-purple bg-gradient-to-b from-primary-700 to-primary-800'
-                    : 'border-primary-100 bg-white shadow-card'
+                    ? 'border-bruma-blue shadow-glow-purple bg-gradient-to-b from-bruma-blue to-bruma-blue-dark'
+                    : 'border-bruma-blue/20 bg-white shadow-card'
                 }`}
               >
                 {/* Ribbon "Más popular" */}
                 {isPopular && (
-                  <div className="absolute top-0 left-0 right-0 text-center py-1.5 bg-lila-DEFAULT text-purple-deep text-xs font-bold tracking-wider uppercase">
+                  <div className="absolute top-0 left-0 right-0 text-center py-1.5 bg-bruma-teal text-bruma-brown text-xs font-bold tracking-wider uppercase">
                     ⭐ Más popular
                   </div>
                 )}
@@ -102,30 +102,30 @@ export function CateringSection() {
                 <div className={`flex flex-col flex-1 p-6 ${isPopular ? 'pt-10' : ''}`}>
                   {/* Ícono */}
                   <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mb-4 ${
-                    isPopular ? 'bg-white/20' : 'bg-primary-100'
+                    isPopular ? 'bg-white/20' : 'bg-bruma-blue/10'
                   }`}>
-                    <Users className={`w-6 h-6 ${isPopular ? 'text-white' : 'text-primary-700'}`} strokeWidth={1.8} />
+                    <Users className={`w-6 h-6 ${isPopular ? 'text-white' : 'text-bruma-blue'}`} strokeWidth={1.8} />
                   </div>
 
                   {/* Personas */}
-                  <p className={`text-sm font-medium mb-1 ${isPopular ? 'text-lila-light' : 'text-muted-foreground'}`}>
+                  <p className={`text-sm font-medium mb-1 ${isPopular ? 'text-bruma-teal-light' : 'text-bruma-brown-light'}`}>
                     Para
                   </p>
                   <h4 className={`font-display font-bold text-2xl mb-3 leading-tight ${
-                    isPopular ? 'text-white' : 'text-purple-deep'
+                    isPopular ? 'text-white' : 'text-bruma-brown'
                   }`}>
                     {option.people}
                   </h4>
 
                   {/* Descripción */}
                   <p className={`text-sm leading-relaxed flex-1 mb-6 ${
-                    isPopular ? 'text-white/80' : 'text-muted-foreground'
+                    isPopular ? 'text-white/80' : 'text-bruma-brown-light'
                   }`}>
                     {option.description}
                   </p>
 
                   {/* Precio */}
-                  <div className={`text-3xl font-bold mb-6 ${isPopular ? 'text-white' : 'text-primary-700'}`}>
+                  <div className={`text-3xl font-bold mb-6 ${isPopular ? 'text-white' : 'text-bruma-blue'}`}>
                     {formatPrice(option.price)}
                   </div>
 
@@ -134,11 +134,11 @@ export function CateringSection() {
                     {['Mesa dulce artesanal', 'Torta incluida', 'Diseño personalizado'].map(feat => (
                       <li key={feat} className="flex items-center gap-2">
                         <div className={`w-4 h-4 rounded-full flex items-center justify-center flex-shrink-0 ${
-                          isPopular ? 'bg-lila-DEFAULT' : 'bg-primary-100'
+                          isPopular ? 'bg-bruma-teal' : 'bg-bruma-blue/10'
                         }`}>
-                          <Check className={`w-2.5 h-2.5 ${isPopular ? 'text-purple-deep' : 'text-primary-700'}`} strokeWidth={3} />
+                          <Check className={`w-2.5 h-2.5 ${isPopular ? 'text-bruma-brown' : 'text-bruma-blue'}`} strokeWidth={3} />
                         </div>
-                        <span className={`text-xs ${isPopular ? 'text-white/80' : 'text-muted-foreground'}`}>
+                        <span className={`text-xs ${isPopular ? 'text-white/80' : 'text-bruma-brown-light'}`}>
                           {feat}
                         </span>
                       </li>
@@ -153,7 +153,7 @@ export function CateringSection() {
                     rel="noopener noreferrer"
                     className={`flex items-center justify-center gap-2 w-full py-3 rounded-2xl font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5 ${
                       isPopular
-                        ? 'bg-white text-primary-700 hover:bg-cream-100 shadow-lg'
+                        ? 'bg-white text-bruma-blue hover:bg-bruma-cream shadow-lg'
                         : 'btn-primary'
                     }`}
                   >
@@ -168,20 +168,20 @@ export function CateringSection() {
       </div>
 
       {/* ── Add-ons ───────────────────────────────── */}
-      <div className="bg-cream-200 rounded-3xl p-8 border border-primary-100">
-        <h3 className="font-display text-xl font-semibold text-purple-deep mb-2 text-center">
+      <div className="bg-bruma-cream-dark rounded-3xl p-8 border border-bruma-cream-mid">
+        <h3 className="font-display text-xl font-semibold text-bruma-brown mb-2 text-center">
           Servicios adicionales
         </h3>
-        <p className="text-muted-foreground text-sm text-center mb-6">
+        <p className="text-bruma-brown-light text-sm text-center mb-6">
           Complementá tu paquete con estos extras disponibles
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {ADD_ONS.map(({ icon: Icon, label }) => (
-            <div key={label} className="flex items-center gap-3 p-4 bg-white rounded-2xl border border-primary-100 shadow-sm">
-              <div className="w-9 h-9 rounded-xl bg-lila-light flex items-center justify-center flex-shrink-0">
-                <Icon className="w-4 h-4 text-primary-700" strokeWidth={1.8} />
+            <div key={label} className="flex items-center gap-3 p-4 bg-white rounded-2xl border border-bruma-cream-mid shadow-sm">
+              <div className="w-9 h-9 rounded-xl bg-bruma-teal-light/50 flex items-center justify-center flex-shrink-0">
+                <Icon className="w-4 h-4 text-bruma-blue" strokeWidth={1.8} />
               </div>
-              <span className="text-sm font-medium text-purple-deep">{label}</span>
+              <span className="text-sm font-medium text-bruma-brown">{label}</span>
             </div>
           ))}
         </div>
@@ -189,29 +189,29 @@ export function CateringSection() {
 
       {/* ── FAQ ───────────────────────────────────── */}
       <div>
-        <h3 className="font-display text-2xl font-semibold text-purple-deep text-center mb-8">
+        <h3 className="font-display text-2xl font-semibold text-bruma-brown text-center mb-8">
           Preguntas frecuentes
         </h3>
         <div className="max-w-2xl mx-auto space-y-3">
           {faqs.map(faq => (
             <div
               key={faq.id}
-              className="bg-white rounded-2xl border border-primary-100 overflow-hidden shadow-sm"
+              className="bg-white rounded-2xl border border-bruma-cream-mid overflow-hidden shadow-sm"
             >
               <button
                 id={`faq-btn-${faq.id}`}
                 onClick={() => setOpenFaq(openFaq === faq.id ? null : faq.id)}
-                className="w-full flex items-center justify-between px-5 py-4 text-left focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-inset"
+                className="w-full flex items-center justify-between px-5 py-4 text-left focus:outline-none focus:ring-2 focus:ring-bruma-teal focus:ring-inset"
                 aria-expanded={openFaq === faq.id}
               >
-                <span className="font-medium text-purple-deep text-sm pr-4">{faq.q}</span>
+                <span className="font-medium text-bruma-brown text-sm pr-4">{faq.q}</span>
                 {openFaq === faq.id
-                  ? <ChevronUp className="w-4 h-4 text-primary-700 flex-shrink-0" strokeWidth={2} />
-                  : <ChevronDown className="w-4 h-4 text-muted-foreground flex-shrink-0" strokeWidth={2} />
+                  ? <ChevronUp className="w-4 h-4 text-bruma-blue flex-shrink-0" strokeWidth={2} />
+                  : <ChevronDown className="w-4 h-4 text-bruma-brown-light flex-shrink-0" strokeWidth={2} />
                 }
               </button>
               <div className={`overflow-hidden transition-all duration-300 ${openFaq === faq.id ? 'max-h-40' : 'max-h-0'}`}>
-                <p className="px-5 pb-4 text-sm text-muted-foreground leading-relaxed">{faq.a}</p>
+                <p className="px-5 pb-4 text-sm text-bruma-brown-light leading-relaxed">{faq.a}</p>
               </div>
             </div>
           ))}
